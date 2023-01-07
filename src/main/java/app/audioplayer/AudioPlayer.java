@@ -7,8 +7,9 @@ import java.io.InputStream;
 public class AudioPlayer implements LineListener {
 
     boolean isPlaybackCompleted;
+    private Clip audioPlayer;
 
-    public AudioPlayer() {}
+    public AudioPlayer() { }
 
     @Override
     public void update(LineEvent event) {
@@ -20,27 +21,45 @@ public class AudioPlayer implements LineListener {
         }
     }
 
-    public void playAudio( String path ) {
+    public void openAudio(String path) {
         try {
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path);
             if ( inputStream != null ) {
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
 
-                Clip audioClip = AudioSystem.getClip();
-                audioClip.addLineListener(this);
-                audioClip.open(audioStream);
+                this.audioPlayer = AudioSystem.getClip();
+                this.audioPlayer.addLineListener(this);
+                this.audioPlayer.open(audioStream);
 
-                FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
+                FloatControl gainControl = (FloatControl) this.audioPlayer.getControl(FloatControl.Type.MASTER_GAIN);
                 float dB = (float) (Math.log(0.2) / Math.log(5.0) * 10.0);
                 gainControl.setValue(dB);
 
-                audioClip.setFramePosition(0);
-                audioClip.start();
-            }
+                this.audioPlayer.setFramePosition(0);
 
+            }
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void playAudio(long time) {
+        this.audioPlayer.setMicrosecondPosition(time);
+        this.audioPlayer.start();
+    }
+
+    public long pauseAudio() {
+        long pauseTime = this.audioPlayer.getMicrosecondPosition();
+        this.audioPlayer.stop();
+        return pauseTime;
+    }
+
+    public void stopAudio() {
+        this.audioPlayer.stop();
+        this.audioPlayer.close();
+    }
+
+    public long getAudioPosition() {
+        return this.audioPlayer.getMicrosecondPosition();
     }
 }

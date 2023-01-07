@@ -11,7 +11,7 @@ public class UserUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<>();
-        options.add(new MenuItem("Play music " , new PlayMusicUI()));
+        options.add(new MenuItem("Play music " , new MusicOptionsUI()));
 
         int option = 0;
         do {
@@ -21,7 +21,7 @@ public class UserUI implements Runnable {
                 if ( (option >= 0) && (option < options.size())) {
                     options.get(option).run();
                 }
-            } catch (Exception e){System.out.print("Invalid option! Try again");;}
+            } catch (Exception e){System.out.print("Invalid option! Try again");}
         }
         while (option != -1 );
     }

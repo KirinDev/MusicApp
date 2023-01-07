@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class AuthUI implements Runnable {
 
-    private AuthController ctrl;
+    private final AuthController ctrl;
 
     public AuthUI()
     {
@@ -58,7 +58,7 @@ public class AuthUI implements Runnable {
         System.out.println("\nLogin UI:");
 
         int maxAttempts = 3;
-        boolean success = false;
+        boolean success;
         do
         {
             maxAttempts--;
