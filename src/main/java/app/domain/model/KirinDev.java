@@ -2,6 +2,7 @@ package app.domain.model;
 
 import app.audioplayer.AudioPlayer;
 import app.auth.AuthFacade;
+import app.domain.store.MusicStore;
 import app.domain.store.PlaylistStore;
 import org.apache.commons.lang3.StringUtils;
 
@@ -11,6 +12,7 @@ public class KirinDev {
     private AuthFacade authFacade;
     private PlaylistStore playlistStore;
     private AudioPlayer player;
+    private MusicStore musicStore;
 
     public KirinDev(String designation) {
         if (StringUtils.isBlank(designation))
@@ -20,6 +22,7 @@ public class KirinDev {
         this.authFacade = new AuthFacade();
 
         this.playlistStore = new PlaylistStore();
+        this.musicStore = new MusicStore();
         this.player = new AudioPlayer();
     }
 
@@ -33,6 +36,10 @@ public class KirinDev {
 
     public PlaylistStore getPlaylistStore() {
         return playlistStore;
+    }
+
+    public MusicStore getMusicStore() {
+        return musicStore;
     }
 
     public AudioPlayer getPlayer() {

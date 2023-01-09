@@ -48,7 +48,7 @@ public class UserStore {
     }
 
     public Optional<User> getById(Email email) {
-        Iterator var2 = this.store.iterator();
+        Iterator<User> var2 = this.store.iterator();
 
         User user;
         do {
@@ -56,7 +56,7 @@ public class UserStore {
                 return Optional.empty();
             }
 
-            user = (User)var2.next();
+            user = var2.next();
         } while(!user.hasId(email));
 
         return Optional.of(user);

@@ -2,11 +2,11 @@ package app.controller;
 
 import app.audioplayer.AudioPlayer;
 
-public class MusicManagerController {
+public class MusicPlayerController {
 
     private App app;
 
-    public MusicManagerController() {
+    public MusicPlayerController() {
         this.app = App.getInstance();
     }
 

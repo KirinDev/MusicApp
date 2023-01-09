@@ -5,14 +5,13 @@ import app.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserUI implements Runnable {
+public class PlaylistUI implements Runnable {
 
-    public UserUI() { }
+    public PlaylistUI() { }
 
     public void run() {
         List<MenuItem> options = new ArrayList<>();
-        options.add(new MenuItem("Play music " , new MusicOptionsUI()));
-        options.add(new MenuItem("PlayList " , new PlaylistUI()));
+        options.add(new MenuItem("Play music from playlist" , new PlayTheListUI() ));
 
         int option = 0;
         do {

@@ -1,6 +1,6 @@
 package app.ui.console;
 
-import app.controller.MusicManagerController;
+import app.controller.MusicPlayerController;
 import app.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -9,10 +9,10 @@ import java.util.Locale;
 
 public class MusicOptionsUI implements Runnable {
 
-    private final MusicManagerController ctrl;
+    private final MusicPlayerController ctrl;
 
     public MusicOptionsUI() {
-        ctrl = new MusicManagerController();
+        ctrl = new MusicPlayerController();
     }
 
     public void run() {

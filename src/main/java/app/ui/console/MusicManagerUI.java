@@ -1,14 +1,14 @@
 package app.ui.console;
 
-import app.controller.MusicManagerController;
+import app.controller.MusicPlayerController;
 
 public class MusicManagerUI implements Runnable {
 
-    private final MusicManagerController ctrl;
+    private final MusicPlayerController ctrl;
     private String option;
 
     public MusicManagerUI(String option) {
-        ctrl = new MusicManagerController();
+        ctrl = new MusicPlayerController();
         this.option = option;
     }
 

@@ -5,7 +5,6 @@ import app.mappers.dto.UserDTO;
 import app.mappers.dto.UserRoleDTO;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -21,11 +20,9 @@ public class UserMapper {
     }
 
     public List<UserDTO> toDTO(List<User> users) {
-        List<UserDTO> usersDTO = new ArrayList();
-        Iterator var3 = users.iterator();
+        List<UserDTO> usersDTO = new ArrayList<>();
 
-        while(var3.hasNext()) {
-            User user = (User)var3.next();
+        for (User user : users) {
             usersDTO.add(this.toDTO(user));
         }
 
@@ -33,11 +30,9 @@ public class UserMapper {
     }
 
     public List<UserDTO> toDTO(Set<User> users) {
-        List<UserDTO> usersDTO = new ArrayList();
-        Iterator var3 = users.iterator();
+        List<UserDTO> usersDTO = new ArrayList<>();
 
-        while(var3.hasNext()) {
-            User user = (User)var3.next();
+        for (User user : users) {
             usersDTO.add(this.toDTO(user));
         }
 
