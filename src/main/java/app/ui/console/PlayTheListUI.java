@@ -21,28 +21,28 @@ public class PlayTheListUI implements Runnable {
     }
 
     public void run() {
-        System.out.println("fuck");
         List<PlaylistDTO> listDTO = ctrl.getPlaylists();
         PlaylistDTO playlist = choosePlaylist(listDTO);
+        List<MusicDTO> musics = playlist.getMusics();
 
-        Iterator<MusicDTO> music = playlist.getMusics().iterator();
-        MusicDTO obj = music.next();
-        int x = 0;
+        System.out.println("\n| PlayList: " + playlist.getName() + " |");
+        for(MusicDTO i : musics) {
+            ctrlPlayer.open(i.getFile_name());
+            ctrlPlayer.play(0);
+            System.out.println("< Currently playing: " + i.getName());
+            System.out.println("< Time of music: " + i.getTime());
 
-        do {
-            if( x == 0) {
-                ctrlPlayer.open(obj.getFile_name());
-                ctrlPlayer.play(0);
-                x = 1;
+            ctrlPlayer.setPlayback();
+
+            while (!ctrlPlayer.checkIfRunning()) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
-
-            if(!ctrlPlayer.checkIfRunning()) {
-                obj = music.next();
-                x = 0;
-            }
-
-        }while(music.hasNext());
-
+            ctrlPlayer.stop();
+        }
     }
 
     public PlaylistDTO choosePlaylist(List<PlaylistDTO> playlistDTO) {

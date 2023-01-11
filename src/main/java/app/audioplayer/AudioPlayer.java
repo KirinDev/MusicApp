@@ -18,10 +18,9 @@ public class AudioPlayer implements LineListener {
     @Override
     public void update(LineEvent event) {
         if (LineEvent.Type.START == event.getType()) {
-            System.out.println("Playback started.");
+            this.isPlaybackCompleted = false;
         } else if (LineEvent.Type.STOP == event.getType()) {
-            isPlaybackCompleted = true;
-            System.out.println("Playback completed.");
+            this.isPlaybackCompleted = true;
         }
     }
 
@@ -89,6 +88,10 @@ public class AudioPlayer implements LineListener {
     }
 
     public boolean isRunning() {
-        return this.audioPlayer.isRunning();
+        return this.isPlaybackCompleted;
+    }
+
+    public void setPlaybackCompleted() {
+        this.isPlaybackCompleted = false;
     }
 }

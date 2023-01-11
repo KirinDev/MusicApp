@@ -45,4 +45,9 @@ public class MusicPlayerController {
         AudioPlayer player = this.app.getKirinDev().getPlayer();
         return player.isRunning();
     }
+
+    public void setPlayback() {
+        AudioPlayer player = this.app.getKirinDev().getPlayer();
+        player.setPlaybackCompleted();
+    }
 }
