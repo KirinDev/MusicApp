@@ -1,5 +1,8 @@
 package app.domain.model;
 
+import java.io.File;
+import java.util.regex.Pattern;
+
 public class Music {
 
     private String name;
@@ -32,5 +35,23 @@ public class Music {
 
     public String getArtist() {
         return artist;
+    }
+
+    public boolean checkTimeFormat(String time) {
+        String timeRegex = "[0-9][0-9]:[0-9][0-9]";
+        Pattern pat = Pattern.compile(timeRegex);
+        return pat.matcher(time).matches();
+    }
+
+    public boolean fileExists(String file_name) {
+        String path = String.format("music/%s", file_name);
+        try{
+            new File(path);
+            return true;
+        }catch(NullPointerException e){
+            System.err.println("« Error: File '" + file_name + "' not found »");
+            return false;
+        }
+
     }
 }

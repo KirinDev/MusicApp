@@ -1,8 +1,12 @@
 package app.audioplayer;
 
+import app.mappers.dto.MusicDTO;
+import app.mappers.dto.PlaylistDTO;
+
 import javax.sound.sampled.*;
-import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Locale;
 
 public class AudioPlayer implements LineListener {
 
@@ -21,9 +25,19 @@ public class AudioPlayer implements LineListener {
         }
     }
 
-    public void openAudio(String path) {
+    public void openAudio(String name) {
+        /*
+        StringBuilder fname = new StringBuilder();
+        String[] arr = name.trim().toLowerCase(Locale.ROOT).split(" ");
+        for (String s : arr) {
+            fname.append(s);
+        }
+        */
+
+        String music = String.format("music/%s", name);
+
         try {
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path);
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(music);
             if ( inputStream != null ) {
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
 
@@ -40,6 +54,17 @@ public class AudioPlayer implements LineListener {
             }
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void openPlaylist(PlaylistDTO playlist) {
+        List<MusicDTO> musics = playlist.getMusics();
+        for( MusicDTO i : musics ) {
+            try {
+                openAudio(i.getFile_name());
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

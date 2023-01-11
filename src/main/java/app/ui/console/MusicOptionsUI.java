@@ -24,13 +24,7 @@ public class MusicOptionsUI implements Runnable {
             String name = Utils.readLineFromConsole("Insert the name of the music: ");
             if (name != null) {
                 success = true;
-                StringBuilder fname = new StringBuilder();
-                String[] arr = name.trim().toLowerCase(Locale.ROOT).split(" ");
-                for (String s : arr) {
-                    fname.append(s);
-                }
-                String music = String.format("music/%s.wav", fname);
-                ctrl.open(music);
+                ctrl.open(name);
             }
 
         } while (!success);

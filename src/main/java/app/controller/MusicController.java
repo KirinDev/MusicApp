@@ -16,6 +16,11 @@ public class MusicController {
         return store.create(name, file_name, time, artist);
     }
 
+    public boolean dataValidation(Music music) {
+        MusicStore store = this.app.getKirinDev().getMusicStore();
+        return store.validation(music);
+    }
+
     public boolean addMusic(Music music) {
         MusicStore store = this.app.getKirinDev().getMusicStore();
         return store.add(music);

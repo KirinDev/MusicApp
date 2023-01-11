@@ -22,6 +22,10 @@ public class PlaylistStore {
         return playlist != null && !this.exists(playlist.getName()) && this.store.add(playlist);
     }
 
+    public void addMusicToPlaylist(Playlist playlist, Music music) {
+        playlist.addMusic(music);
+    }
+
     public Optional<Playlist> getById(String name) {
         Iterator<Playlist> var2 = this.store.iterator();
 
@@ -40,6 +44,19 @@ public class PlaylistStore {
     public boolean exists(String name) {
         Optional<Playlist> result = this.getById(name);
         return result.isPresent();
+    }
+
+    public Set<Playlist> getPlaylists() {
+        return this.store;
+    }
+
+    public Playlist getByName(String name) {
+        for( Playlist i : this.store ) {
+            if( i.getName().equals(name)) {
+                return i;
+            }
+        }
+        return null;
     }
 
 }

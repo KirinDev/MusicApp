@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.audioplayer.AudioPlayer;
+import app.mappers.dto.PlaylistDTO;
 
 public class MusicPlayerController {
 
@@ -14,6 +15,12 @@ public class MusicPlayerController {
         AudioPlayer player = this.app.getKirinDev().getPlayer();
         player.openAudio(music);
     }
+
+    public void openPlaylist(PlaylistDTO playlist) {
+        AudioPlayer player = this.app.getKirinDev().getPlayer();
+        player.openPlaylist(playlist);
+    }
+
     public void play( long time ) {
         AudioPlayer player = this.app.getKirinDev().getPlayer();
         player.playAudio(time);

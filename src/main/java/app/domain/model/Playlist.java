@@ -23,4 +23,8 @@ public class Playlist {
     public boolean hasID(String name) {
         return name.equals(this.name);
     }
+
+    public void addMusic(Music music) {
+        musics.add(music);
+    }
 }

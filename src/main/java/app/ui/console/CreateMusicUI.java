@@ -25,14 +25,17 @@ public class CreateMusicUI implements Runnable {
         Music music = ctrl.createMusic(name, file_name, time, artist);
 
         if( dataConfirmation(music).equals("yes")) {
-            if(ctrl.addMusic(music)) {
-                System.out.println("< The music has been registered in the system >");
+            if( ctrl.dataValidation(music)) {
+                if(ctrl.addMusic(music)) {
+                    System.out.println("< The music has been registered in the system successfully >");
 
+                }else{
+                    System.err.println("« Error: The music introduced already exists in the system »");
+                }
             }else{
                 System.err.println("« Error: The music data introduced is invalid. Try again »");
             }
         }
-
     }
 
     public String dataConfirmation(Music music) {
@@ -47,7 +50,7 @@ public class CreateMusicUI implements Runnable {
         System.out.println("Artist: " + music.getArtist());
         System.out.println("=======================//======================");
 
-        int option = Utils.showAndSelectIndex(options, "\n\nUser Menu:");
+        int option = Utils.showAndSelectIndex(options, "\n\nConfirm data:");
         return options.get(option);
     }
 }

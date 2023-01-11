@@ -2,6 +2,7 @@ package app.domain.store;
 
 import app.domain.model.Music;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
@@ -41,5 +42,20 @@ public class MusicStore {
         return result.isPresent();
     }
 
+    public boolean validation(Music music) {
+        return music.checkTimeFormat(music.getTime()) && music.fileExists(music.getFile_name());
+    }
 
+    public Music getByNameAndArtist(String name, String artist) {
+        for(Music i : this.store) {
+            if(i.getName().equals(name) && i.getArtist().equals(artist)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public Set<Music> getMusics() {
+        return this.store;
+    }
 }
