@@ -40,4 +40,9 @@ public class MusicPlayerController {
         AudioPlayer player = this.app.getKirinDev().getPlayer();
         return player.getAudioPosition();
     }
+
+    public boolean checkIfRunning() {
+        AudioPlayer player = this.app.getKirinDev().getPlayer();
+        return player.isRunning();
+    }
 }

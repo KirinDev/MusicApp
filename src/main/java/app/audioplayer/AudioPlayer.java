@@ -87,4 +87,8 @@ public class AudioPlayer implements LineListener {
     public long getAudioPosition() {
         return this.audioPlayer.getMicrosecondPosition();
     }
+
+    public boolean isRunning() {
+        return this.audioPlayer.isRunning();
+    }
 }

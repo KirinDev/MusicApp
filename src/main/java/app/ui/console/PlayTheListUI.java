@@ -7,6 +7,7 @@ import app.mappers.dto.PlaylistDTO;
 import app.ui.console.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class PlayTheListUI implements Runnable {
@@ -23,17 +24,24 @@ public class PlayTheListUI implements Runnable {
         System.out.println("fuck");
         List<PlaylistDTO> listDTO = ctrl.getPlaylists();
         PlaylistDTO playlist = choosePlaylist(listDTO);
-        List<MusicDTO> musics = playlist.getMusics();
 
-        try {
-            for(MusicDTO i : musics) {
-                System.out.println(i.getFile_name());
-                ctrlPlayer.open(i.getFile_name());
+        Iterator<MusicDTO> music = playlist.getMusics().iterator();
+        MusicDTO obj = music.next();
+        int x = 0;
+
+        do {
+            if( x == 0) {
+                ctrlPlayer.open(obj.getFile_name());
                 ctrlPlayer.play(0);
+                x = 1;
             }
-        }catch(Exception e){
-            System.out.println("gay");
-        }
+
+            if(!ctrlPlayer.checkIfRunning()) {
+                obj = music.next();
+                x = 0;
+            }
+
+        }while(music.hasNext());
 
     }
 
