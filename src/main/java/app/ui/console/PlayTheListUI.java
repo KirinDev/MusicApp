@@ -29,12 +29,26 @@ public class PlayTheListUI implements Runnable {
         for(MusicDTO i : musics) {
             ctrlPlayer.open(i.getFile_name());
             ctrlPlayer.play(0);
-            System.out.println("< Currently playing: " + i.getName());
+            System.out.println("\n< Currently playing: " + i.getName());
             System.out.println("< Time of music: " + i.getTime());
 
             ctrlPlayer.setPlayback();
+            boolean isPaused = false;
+            long pauseTime = 0;
 
-            while (!ctrlPlayer.checkIfRunning()) {
+            while (ctrlPlayer.checkIfRunning() || isPaused) {
+                String option = musicAction();
+                if( option.equals("resume")) {
+                    ctrlPlayer.play(pauseTime);
+                    isPaused = false;
+                }else if(option.equals("pause")) {
+                    isPaused = true;
+                    pauseTime = ctrlPlayer.pause();
+                }else{
+                    System.out.println("\n< Skipping to the next music... >");
+                    break;
+                }
+
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
@@ -52,5 +66,16 @@ public class PlayTheListUI implements Runnable {
         }
         int option = Utils.showAndSelectIndex(options, "\n\nChoose the PlayList: ");
         return playlistDTO.get(option);
+    }
+
+    public String musicAction() {
+        List<String> options = new ArrayList<>();
+        options.add("resume");
+        options.add("pause");
+        options.add("next music");
+
+        int option;
+        option = Utils.showAndSelectIndex(options, "\n\nMusic Menu:");
+        return options.get(option);
     }
 }

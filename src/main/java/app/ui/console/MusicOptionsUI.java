@@ -30,7 +30,7 @@ public class MusicOptionsUI implements Runnable {
         } while (!success);
 
         List<MenuItem> options = new ArrayList<>();
-        options.add(new MenuItem("Play " , new MusicManagerUI("play")));
+        options.add(new MenuItem("Play/Resume " , new MusicManagerUI("play")));
         options.add(new MenuItem("Pause " , new MusicManagerUI("pause")));
         options.add(new MenuItem("Stop " , new MusicManagerUI("stop")));
 

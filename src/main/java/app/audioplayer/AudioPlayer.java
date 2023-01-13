@@ -88,7 +88,7 @@ public class AudioPlayer implements LineListener {
     }
 
     public boolean isRunning() {
-        return this.isPlaybackCompleted;
+        return !this.isPlaybackCompleted;
     }
 
     public void setPlaybackCompleted() {
