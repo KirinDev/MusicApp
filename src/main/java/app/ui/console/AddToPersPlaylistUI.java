@@ -1,25 +1,30 @@
 package app.ui.console;
 
-import app.controller.GlobalPlaylistController;
+import app.controller.PersonalPlaylistController;
+import app.domain.model.Email;
 import app.domain.model.Music;
 import app.domain.model.Playlist;
+import app.domain.model.User;
 import app.mappers.dto.MusicDTO;
 import app.mappers.dto.PlaylistDTO;
 import app.ui.console.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AddToPlaylistUI implements Runnable {
+public class AddToPersPlaylistUI implements Runnable {
 
-    private GlobalPlaylistController ctrl;
+    private PersonalPlaylistController ctrl;
 
-    public AddToPlaylistUI() {
-        ctrl = new GlobalPlaylistController();
+    public AddToPersPlaylistUI() {
+        ctrl = new PersonalPlaylistController();
     }
 
     public void run() {
+        Email email = ctrl.getUserID();
+        User user = ctrl.getUserByID(email);
 
-        List<PlaylistDTO> playlistDTO = ctrl.getPlaylists();
+        List<PlaylistDTO> playlistDTO = ctrl.getPlaylists(user);
         List<MusicDTO> musicsDTO = ctrl.getMusics();
 
         PlaylistDTO tempPlaylist = Utils.choosePlaylist(playlistDTO);
@@ -31,4 +36,5 @@ public class AddToPlaylistUI implements Runnable {
         ctrl.addMusicToPlaylist(playlist, music);
 
     }
+
 }

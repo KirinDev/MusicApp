@@ -1,6 +1,8 @@
 package app.ui.console.utils;
 
 import app.domain.model.Playlist;
+import app.mappers.dto.MusicDTO;
+import app.mappers.dto.PlaylistDTO;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -181,5 +183,23 @@ public class Utils {
 
         int option = Utils.showAndSelectIndex(options, "\n\nUser Menu:");
         return options.get(option);
+    }
+
+    static public PlaylistDTO choosePlaylist(List<PlaylistDTO> playlistDTO) {
+        List<String> options = new ArrayList<>();
+        for(PlaylistDTO i : playlistDTO) {
+            options.add(i.getName());
+        }
+        int option = Utils.showAndSelectIndex(options, "\n\nChoose the PlayList: ");
+        return playlistDTO.get(option);
+    }
+
+    static public MusicDTO chooseMusic(List<MusicDTO> musicDTO) {
+        List<String> options = new ArrayList<>();
+        for(MusicDTO i : musicDTO) {
+            options.add(i.getName());
+        }
+        int option = Utils.showAndSelectIndex(options, "\n\nChoose the Music: ");
+        return musicDTO.get(option);
     }
 }

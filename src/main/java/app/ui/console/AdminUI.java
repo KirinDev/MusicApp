@@ -12,6 +12,7 @@ public class AdminUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Register a new song " , new CreateMusicUI()));
+        options.add(new MenuItem("Global Playlists " , new GlobalPlaylistsUI()));
 
         int option = 0;
         do {
