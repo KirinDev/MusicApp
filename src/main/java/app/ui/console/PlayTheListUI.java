@@ -1,22 +1,21 @@
 package app.ui.console;
 
 import app.controller.MusicPlayerController;
-import app.controller.PlaylistController;
+import app.controller.GlobalPlaylistController;
 import app.mappers.dto.MusicDTO;
 import app.mappers.dto.PlaylistDTO;
 import app.ui.console.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PlayTheListUI implements Runnable {
 
-    private PlaylistController ctrl;
+    private GlobalPlaylistController ctrl;
     private MusicPlayerController ctrlPlayer;
 
     public PlayTheListUI() {
-        ctrl = new PlaylistController();
+        ctrl = new GlobalPlaylistController();
         ctrlPlayer = new MusicPlayerController();
     }
 

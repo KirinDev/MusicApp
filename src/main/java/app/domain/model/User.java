@@ -11,6 +11,7 @@ public class User {
     private Password password;
     private String name;
     private Set<UserRole> roles = new HashSet();
+    private Set<Playlist> playlists = new HashSet<>();
 
     public User( Email id, Password pwd, String name ) {
         if (ObjectUtils.allNotNull(new Object[]{id, pwd}) && !StringUtils.isBlank(name)) {
@@ -30,6 +31,10 @@ public class User {
         return this.name;
     }
 
+    public Set<Playlist> getPlaylists() {
+        return playlists;
+    }
+
     public boolean hasId(Email id) {
         return this.email.equals(id);
     }
@@ -39,11 +44,11 @@ public class User {
     }
 
     public boolean addRole(UserRole role) {
-        return role != null ? this.roles.add(role) : false;
+        return role != null && this.roles.add(role);
     }
 
     public boolean removeRole(UserRole role) {
-        return role != null ? this.roles.remove(role) : false;
+        return role != null && this.roles.remove(role);
     }
 
     public boolean hasRole(UserRole role) {
@@ -81,6 +86,14 @@ public class User {
         this.roles.clear();
         this.roles.addAll(roles);
         return this.roles.containsAll(roles);
+    }
+
+    public boolean addPlaylist(Playlist playlist) {
+        return playlist != null && this.playlists.add(playlist);
+    }
+
+    public boolean removePlaylist(Playlist playlist) {
+        return playlist != null && this.playlists.remove(playlist);
     }
 
     public boolean changeName(String newName) {

@@ -62,6 +62,15 @@ public class UserStore {
         return Optional.of(user);
     }
 
+    public User getUserByID(Email email) {
+        User user = null;
+        for( User i : this.store ) {
+            if(i.hasId(email))
+                user = i;
+        }
+        return user;
+    }
+
     public boolean exists(String email) {
         Optional<User> result = this.getById(email);
         return result.isPresent();

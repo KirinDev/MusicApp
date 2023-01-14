@@ -1,21 +1,21 @@
 package app.ui.console;
 
-import app.controller.GlobalPlaylistController;
+import app.controller.PersonalPlaylistController;
+import app.domain.model.Email;
 import app.domain.model.Music;
 import app.domain.model.Playlist;
+import app.domain.model.User;
 import app.ui.console.utils.Utils;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class CreatePlaylistUI implements Runnable {
+public class CreatePersPlaylistUI implements Runnable {
 
-    private GlobalPlaylistController ctrl;
+    private PersonalPlaylistController ctrl;
 
-    public CreatePlaylistUI() {
-        ctrl = new GlobalPlaylistController();
+    public CreatePersPlaylistUI() {
+        ctrl = new PersonalPlaylistController();
     }
 
     public void run() {
@@ -24,15 +24,15 @@ public class CreatePlaylistUI implements Runnable {
         Set<Music> musics = new HashSet<>();
 
         Playlist list = ctrl.createPlaylist(name, musics);
+        Email email = ctrl.getUserID();
+        User user = ctrl.getUserByID(email);
 
         if( Utils.dataConfirmation(list).equals("yes")) {
-            if(ctrl.addPlaylist(list)) {
+            if(ctrl.addPlaylist(list, user)) {
                 System.out.println("< The PlayList has been created successfully >");
             }else{
                 System.err.println("« Error: Another existing PlayList already has this name. Please try again »");
             }
         }
     }
-
-
 }

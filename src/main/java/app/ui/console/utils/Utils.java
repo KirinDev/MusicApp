@@ -1,9 +1,12 @@
 package app.ui.console.utils;
 
+import app.domain.model.Playlist;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -165,5 +168,18 @@ public class Utils {
         } while (value < 0 || value > list.size());
 
         return value - 1;
+    }
+
+    static public String dataConfirmation(Playlist playlist) {
+        List<String> options = new ArrayList<>();
+        options.add("yes");
+        options.add("no");
+
+        System.out.println("=========PlayList Confirmation========");
+        System.out.println("Name: " + playlist.getName());
+        System.out.println("=================//=================");
+
+        int option = Utils.showAndSelectIndex(options, "\n\nUser Menu:");
+        return options.get(option);
     }
 }
