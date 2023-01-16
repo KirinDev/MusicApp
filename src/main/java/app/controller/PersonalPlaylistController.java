@@ -32,7 +32,7 @@ public class PersonalPlaylistController {
     }
 
     public User getUserByID(Email email) {
-        UserStore store = this.app.getKirinDev().getUserStore();
+        UserStore store = this.app.getKirinDev().getAuthFacade().getUserStore();
         return store.getUserByID(email);
     }
 

@@ -8,7 +8,7 @@ import java.util.*;
 
 public class UserStore {
 
-    private Set<User> store = new HashSet();
+    private Set<User> store = new HashSet<>();
 
     public UserStore() {
     }
@@ -18,11 +18,11 @@ public class UserStore {
     }
 
     public boolean add(User user) {
-        return user != null && !this.exists(user) ? this.store.add(user) : false;
+        return user != null && !this.exists(user) && this.store.add(user);
     }
 
     public boolean remove(User user) {
-        return user != null ? this.store.remove(user) : false;
+        return user != null && this.store.remove(user);
     }
 
     public Set<User> getAll() {
@@ -63,11 +63,14 @@ public class UserStore {
     }
 
     public User getUserByID(Email email) {
-        User user = null;
-        for( User i : this.store ) {
-            if(i.hasId(email))
-                user = i;
-        }
+        Iterator<User> var2 = this.store.iterator();
+        User user;
+        do {
+            user = var2.next();
+            if(user.getId().getEmail().equals(email.getEmail())) {
+                return user;
+            }
+        } while(var2.hasNext());
         return user;
     }
 

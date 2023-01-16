@@ -20,7 +20,8 @@ public class AuthFacade {
     private UserRoleStore roles = new UserRoleStore();
     private UserStore users = new UserStore();
 
-    public AuthFacade() {}
+    public AuthFacade() {
+    }
 
     public boolean addUserRole(String id, String description) {
         UserRole role = this.roles.create(id, description);
@@ -39,6 +40,10 @@ public class AuthFacade {
     public List<UserRoleDTO> getUserRoles() {
         UserRoleMapper mapper = new UserRoleMapper();
         return mapper.toDTO(this.roles.getAll());
+    }
+
+    public UserStore getUserStore() {
+        return this.users;
     }
 
     public Optional<UserRoleDTO> getRole(String id) {

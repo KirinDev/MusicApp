@@ -36,7 +36,7 @@ public class User {
     }
 
     public boolean hasId(Email id) {
-        return this.email.equals(id);
+        return this.email.getEmail().equals(id.getEmail());
     }
 
     public boolean hasPassword(String pwd) {
