@@ -1,9 +1,10 @@
 package app.domain.model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
-public class Music {
+public class Music implements Serializable {
 
     private String name;
     private String file_name;
