@@ -1,12 +1,20 @@
 package app.domain.store;
 
 import app.domain.model.Email;
+import app.domain.model.Music;
 import app.domain.model.Password;
 import app.domain.model.User;
+import app.domain.shared.Constants;
 
+import java.io.*;
 import java.util.*;
 
 public class UserStore {
+
+    private FileOutputStream outFile;
+    private ObjectOutputStream output;
+    private FileInputStream inFile;
+    private ObjectInputStream input;
 
     private Set<User> store = new HashSet<>();
 
@@ -18,7 +26,12 @@ public class UserStore {
     }
 
     public boolean add(User user) {
-        return user != null && !this.exists(user) && this.store.add(user);
+        if(user != null && !this.exists(user.getId()) && this.store.add(user)) {
+            saveList();
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean remove(User user) {
@@ -86,5 +99,29 @@ public class UserStore {
 
     public boolean exists(User user) {
         return this.store.contains(user);
+    }
+
+    public void saveList() {
+        try {
+            this.outFile = new FileOutputStream(Constants.USER_FILE);
+            this.output = new ObjectOutputStream(outFile);
+            this.output.writeObject(this.store);
+            this.output.close();
+            this.outFile.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void loadToLocalList() {
+        try {
+            this.inFile = new FileInputStream(Constants.USER_FILE);
+            this.input = new ObjectInputStream(inFile);
+            this.store = (Set<User>) input.readObject();
+            this.input.close();
+            this.inFile.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

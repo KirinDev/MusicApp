@@ -30,10 +30,10 @@ public class AddToPersPlaylistUI implements Runnable {
         PlaylistDTO tempPlaylist = Utils.choosePlaylist(playlistDTO);
         MusicDTO tempMusic = Utils.chooseMusic(musicsDTO);
 
-        Playlist playlist = ctrl.getPlaylistByName(tempPlaylist.getName());
+        Playlist playlist = ctrl.getPlaylistByName(tempPlaylist.getName(), user);
         Music music = ctrl.getMusicByNameArtist(tempMusic.getName(), tempMusic.getArtist());
 
-        ctrl.addMusicToPlaylist(playlist, music);
+        ctrl.addMusicToPlaylist(playlist, music, user);
 
     }
 

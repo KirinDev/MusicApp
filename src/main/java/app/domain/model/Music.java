@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.Serializable;
 import java.util.regex.Pattern;
@@ -12,10 +14,15 @@ public class Music implements Serializable {
     private String artist;
 
     public Music(String name, String file_name, String time, String artist) {
-        this.name = name;
-        this.file_name = file_name;
-        this.time = time;
-        this.artist = artist;
+        if (!StringUtils.isBlank(name) && !StringUtils.isBlank(file_name) && !StringUtils.isBlank(time) && !StringUtils.isBlank(artist)) {
+            this.name = name;
+            this.file_name = file_name;
+            this.time = time;
+            this.artist = artist;
+        }else{
+            throw new IllegalArgumentException("Music cannot have a name, file_name, time and artist null/blank.");
+        }
+
     }
 
     public boolean hasNameArtist(String name, String artist) {

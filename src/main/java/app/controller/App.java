@@ -47,7 +47,6 @@ public class App {
     private void bootstrap() {
         this.authFacade.addUserRole(Constants.ROLE_USER,Constants.ROLE_USER);
         this.authFacade.addUserRole(Constants.ROLE_ADMIN,Constants.ROLE_ADMIN);
-        this.authFacade.addUserWithRole("Software User", "weeb@shows.pt", "1811",Constants.ROLE_USER);
         this.authFacade.addUserWithRole("Admin User", "admin@music.pt", "1811",Constants.ROLE_ADMIN);
     }
 

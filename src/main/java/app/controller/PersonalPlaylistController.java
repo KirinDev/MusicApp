@@ -56,9 +56,8 @@ public class PersonalPlaylistController {
         return this.muMapper.toDTO(lst);
     }
 
-    public Playlist getPlaylistByName(String name) {
-        PlaylistStore store = this.app.getKirinDev().getPlaylistStore();
-        return store.getByName(name);
+    public Playlist getPlaylistByName(String name, User user) {
+        return user.getByName(name);
     }
 
     public Music getMusicByNameArtist(String name, String artist) {
@@ -66,8 +65,7 @@ public class PersonalPlaylistController {
         return store.getByNameAndArtist(name, artist);
     }
 
-    public void addMusicToPlaylist(Playlist playlist, Music music) {
-        PlaylistStore store = this.app.getKirinDev().getPlaylistStore();
-        store.addMusicToPlaylist(playlist, music);
+    public void addMusicToPlaylist(Playlist playlist, Music music, User user) {
+        user.addMusicToPlaylist(playlist, music);
     }
 }

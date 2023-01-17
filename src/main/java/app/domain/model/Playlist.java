@@ -1,15 +1,22 @@
 package app.domain.model;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.Serializable;
 import java.util.Set;
 
-public class Playlist {
+public class Playlist implements Serializable {
 
     private String name;
     private Set<Music> musics;
 
     public Playlist(String name, Set<Music> musics) {
-        this.name = name;
-        this.musics = musics;
+        if (!StringUtils.isBlank(name) ) {
+            this.name = name;
+            this.musics = musics;
+        }else{
+            throw new IllegalArgumentException("Playlist cannot have a name null/blank.");
+        }
     }
 
     public String getName() {

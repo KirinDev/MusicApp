@@ -11,7 +11,7 @@ public class PlaylistUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<>();
-        options.add(new MenuItem("Play music from playlist" , new PlayTheListUI() ));
+        options.add(new MenuItem("Play music from playlist" , new TypePlaylistUI() ));
         options.add(new MenuItem("Create a new PlayList" , new CreatePersPlaylistUI() ));
         options.add(new MenuItem("Add music to PlayList" , new AddToPersPlaylistUI() ));
 

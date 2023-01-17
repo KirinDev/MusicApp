@@ -2,10 +2,11 @@ package app.domain.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Email {
+public class Email implements Serializable {
 
     private String email;
 
@@ -18,7 +19,7 @@ public class Email {
     }
 
     private boolean validate(String email) {
-        return StringUtils.isBlank(email) ? false : this.checkFormat(email);
+        return !StringUtils.isBlank(email) && this.checkFormat(email);
     }
 
     private boolean checkFormat(String email) {

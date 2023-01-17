@@ -3,14 +3,15 @@ package app.domain.model;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class User {
+public class User implements Serializable {
 
     private Email email;
     private Password password;
     private String name;
-    private Set<UserRole> roles = new HashSet();
+    private Set<UserRole> roles = new HashSet<>();
     private Set<Playlist> playlists = new HashSet<>();
 
     public User( Email id, Password pwd, String name ) {
@@ -103,6 +104,19 @@ public class User {
             this.name = newName.trim();
             return true;
         }
+    }
+
+    public Playlist getByName(String name) {
+        for( Playlist i : this.playlists ) {
+            if( i.getName().equals(name)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public void addMusicToPlaylist(Playlist playlist, Music music) {
+        playlist.addMusic(music);
     }
 
     public int hashCode() {
