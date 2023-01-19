@@ -12,11 +12,6 @@ import java.util.Set;
 
 public class PlaylistStore {
 
-    private FileOutputStream outFile;
-    private ObjectOutputStream output;
-    private FileInputStream inFile;
-    private ObjectInputStream input;
-
     private Set<Playlist> store = new HashSet<>();
 
     public PlaylistStore() { }
@@ -26,12 +21,7 @@ public class PlaylistStore {
     }
 
     public boolean add(Playlist playlist) {
-        if(playlist != null && !this.exists(playlist.getName()) && this.store.add(playlist)) {
-            saveList();
-            return true;
-        }else{
-            return false;
-        }
+        return playlist != null && !this.exists(playlist.getName()) && this.store.add(playlist);
     }
 
     public void addMusicToPlaylist(Playlist playlist, Music music) {
@@ -69,30 +59,6 @@ public class PlaylistStore {
             }
         }
         return null;
-    }
-
-    public void saveList() {
-        try {
-            this.outFile = new FileOutputStream(Constants.PLAYLIST_FILE);
-            this.output = new ObjectOutputStream(outFile);
-            this.output.writeObject(this.store);
-            this.output.close();
-            this.outFile.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void loadToLocalList() {
-        try {
-            this.inFile = new FileInputStream(Constants.PLAYLIST_FILE);
-            this.input = new ObjectInputStream(inFile);
-            this.store = (Set<Playlist>) input.readObject();
-            this.input.close();
-            this.inFile.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
 }

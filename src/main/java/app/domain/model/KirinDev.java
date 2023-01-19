@@ -23,11 +23,7 @@ public class KirinDev {
         this.authFacade = new AuthFacade();
 
         this.playlistStore = new PlaylistStore();
-        this.playlistStore.loadToLocalList();
-
         this.musicStore = new MusicStore();
-        this.musicStore.loadToLocalList();
-
         this.player = new AudioPlayer();
 
     }

@@ -3,10 +3,9 @@ package app.domain.model;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Password implements Serializable {
+public class Password {
 
     private String password;
 

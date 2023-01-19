@@ -18,11 +18,9 @@ public class AuthFacade {
 
     private UserSession userSession = new UserSession();
     private UserRoleStore roles = new UserRoleStore();
-    private UserStore users;
+    private UserStore users = new UserStore();
 
     public AuthFacade() {
-        this.users = new UserStore();
-        this.users.loadToLocalList();
     }
 
     public boolean addUserRole(String id, String description) {

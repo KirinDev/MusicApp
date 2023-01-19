@@ -3,10 +3,9 @@ package app.domain.model;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.regex.Pattern;
 
-public class Music implements Serializable {
+public class Music {
 
     private String name;
     private String file_name;

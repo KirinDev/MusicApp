@@ -2,10 +2,9 @@ package app.domain.model;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class UserRole implements Serializable {
+public class UserRole {
 
     private String id;
     private String description;

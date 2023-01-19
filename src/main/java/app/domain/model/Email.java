@@ -2,11 +2,10 @@ package app.domain.model;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Email implements Serializable {
+public class Email {
 
     private String email;
 

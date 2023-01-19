@@ -3,10 +3,9 @@ package app.domain.model;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.*;
 
-public class User implements Serializable {
+public class User {
 
     private Email email;
     private Password password;

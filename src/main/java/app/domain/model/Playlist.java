@@ -2,10 +2,9 @@ package app.domain.model;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Set;
 
-public class Playlist implements Serializable {
+public class Playlist {
 
     private String name;
     private Set<Music> musics;
