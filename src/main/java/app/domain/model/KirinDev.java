@@ -2,6 +2,7 @@ package app.domain.model;
 
 import app.audioplayer.AudioPlayer;
 import app.auth.AuthFacade;
+import app.database.Driver;
 import app.domain.store.MusicStore;
 import app.domain.store.PlaylistStore;
 import app.domain.store.UserStore;
@@ -14,6 +15,7 @@ public class KirinDev {
     private PlaylistStore playlistStore;
     private AudioPlayer player;
     private MusicStore musicStore;
+    private Driver driver;
 
     public KirinDev(String designation) {
         if (StringUtils.isBlank(designation))
@@ -25,7 +27,7 @@ public class KirinDev {
         this.playlistStore = new PlaylistStore();
         this.musicStore = new MusicStore();
         this.player = new AudioPlayer();
-
+        this.driver = new Driver();
     }
 
     public String getDesignation() {
@@ -48,4 +50,7 @@ public class KirinDev {
         return player;
     }
 
+    public Driver getDriver() {
+        return driver;
+    }
 }

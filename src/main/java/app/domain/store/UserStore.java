@@ -1,12 +1,13 @@
 package app.domain.store;
 
 import app.domain.model.Email;
-import app.domain.model.Music;
 import app.domain.model.Password;
 import app.domain.model.User;
-import app.domain.shared.Constants;
 
-import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class UserStore {
@@ -91,4 +92,17 @@ public class UserStore {
         return this.store.contains(user);
     }
 
+    public void insertToDatabase(Connection conn, String name, String email, String password) {
+        try {
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO App_User (email_ID, name, password) VALUES (?, ?, ?)");
+            stat.setString(1, email);
+            stat.setString(2, name);
+            stat.setString(3, password);
+            stat.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 }

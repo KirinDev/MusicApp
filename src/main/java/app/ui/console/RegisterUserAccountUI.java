@@ -4,6 +4,8 @@ import app.controller.RegisterUserAccController;
 import app.domain.shared.Constants;
 import app.ui.console.utils.Utils;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,12 @@ public class RegisterUserAccountUI implements Runnable {
         if( dataConfirmation(name, email, pwd).equals("yes")) {
             if( ctrl.registerUser(name, email, pwd, Constants.ROLE_USER)) {
                 System.out.println("\n< The User account has been registered successfully >");
+                try {
+                    Connection conn = ctrl.getServerConnection();
+                    ctrl.insertToDatabase(conn, name, email, pwd);
+                } catch (Exception e) {
+                    System.err.println("« Error: Failed connect to SQL server »");
+                }
             }else{
                 System.err.println("\n« The data introduced is invalid. Try again »");
             }

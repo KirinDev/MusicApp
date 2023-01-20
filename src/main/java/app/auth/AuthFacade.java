@@ -9,6 +9,7 @@ import app.mappers.UserRoleMapper;
 import app.mappers.dto.UserDTO;
 import app.mappers.dto.UserRoleDTO;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -109,6 +110,10 @@ public class AuthFacade {
         } else {
             return Optional.empty();
         }
+    }
+
+    public void insertUserDatabase(Connection conn, String name, String email, String password) {
+        this.users.insertToDatabase(conn, name, email, password);
     }
 
     public boolean updateUser(UserDTO dto) {
