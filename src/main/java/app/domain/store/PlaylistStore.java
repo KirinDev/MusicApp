@@ -5,6 +5,9 @@ import app.domain.model.Playlist;
 import app.domain.shared.Constants;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
@@ -59,6 +62,18 @@ public class PlaylistStore {
             }
         }
         return null;
+    }
+
+    public void insertToDatabase(Connection conn, String name) {
+        try {
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO Global_Playlist (name) VALUES (?)");
+            stat.setString(1, name);
+            stat.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
 }

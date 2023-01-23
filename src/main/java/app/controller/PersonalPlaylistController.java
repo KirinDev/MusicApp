@@ -12,6 +12,7 @@ import app.mappers.PlaylistMapper;
 import app.mappers.dto.MusicDTO;
 import app.mappers.dto.PlaylistDTO;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Set;
 
@@ -67,5 +68,10 @@ public class PersonalPlaylistController {
 
     public void addMusicToPlaylist(Playlist playlist, Music music, User user) {
         user.addMusicToPlaylist(playlist, music);
+    }
+
+    public void insertToDatabase(Connection conn, ) {
+        MusicStore store = this.app.getKirinDev().getMusicStore();
+        store.insertToDatabase(conn, name, file_name, time, artist);
     }
 }

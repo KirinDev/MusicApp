@@ -2,6 +2,9 @@ package app.domain.store;
 
 import app.domain.model.Music;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
@@ -58,4 +61,17 @@ public class MusicStore {
         return this.store;
     }
 
+    public void insertToDatabase(Connection conn, String name, String file_name, String time, String artist) {
+        try {
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO Music (name_ID, fileName, time, artist) VALUES (?, ?, ?, ?)");
+            stat.setString(1, name);
+            stat.setString(2, file_name);
+            stat.setString(3, time);
+            stat.setString(4, artist);
+            stat.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

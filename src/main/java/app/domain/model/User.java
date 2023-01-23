@@ -3,6 +3,9 @@ package app.domain.model;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 
 public class User {
@@ -116,6 +119,17 @@ public class User {
 
     public void addMusicToPlaylist(Playlist playlist, Music music) {
         playlist.addMusic(music);
+    }
+
+    public void insertToDatabase(Connection conn, String name) {
+        try {
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO Pers_Playlist (name_ID) VALUES (?)");
+            stat.setString(1, name);
+            stat.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public int hashCode() {
