@@ -61,17 +61,19 @@ public class MusicStore {
         return this.store;
     }
 
-    public void insertToDatabase(Connection conn, String name, String file_name, String time, String artist) {
+    public void insertToDatabase(Connection conn, String file_name, String name, String time, String artist) {
         try {
-            PreparedStatement stat = conn.prepareStatement("INSERT INTO Music (name_ID, fileName, time, artist) VALUES (?, ?, ?, ?)");
-            stat.setString(1, name);
-            stat.setString(2, file_name);
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO Music (fileName_ID, name, time, artist) VALUES (?, ?, ?, ?)");
+            stat.setString(1, file_name);
+            stat.setString(2, name);
             stat.setString(3, time);
             stat.setString(4, artist);
             stat.executeUpdate();
 
+            conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
     }
 }

@@ -1,7 +1,9 @@
 package app.controller;
 
+import app.database.Driver;
 import app.domain.model.Music;
 import app.domain.model.Playlist;
+import app.domain.model.User;
 import app.domain.store.MusicStore;
 import app.domain.store.PlaylistStore;
 import app.mappers.MusicMapper;
@@ -9,6 +11,7 @@ import app.mappers.PlaylistMapper;
 import app.mappers.dto.MusicDTO;
 import app.mappers.dto.PlaylistDTO;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Set;
 
@@ -59,5 +62,20 @@ public class GlobalPlaylistController {
     public void addMusicToPlaylist(Playlist playlist, Music music) {
         PlaylistStore store = this.app.getKirinDev().getPlaylistStore();
         store.addMusicToPlaylist(playlist, music);
+    }
+
+    public Connection getServerConnection() {
+        Driver driver = this.app.getKirinDev().getDriver();
+        return driver.connectToSQLServer();
+    }
+
+    public void insertToDatabase(Connection conn, String name) {
+        PlaylistStore store = this.app.getKirinDev().getPlaylistStore();
+        store.insertToDatabase(conn, name);
+    }
+
+    public void insertToDatabase(Connection conn, String name, String file_name) {
+        PlaylistStore store = this.app.getKirinDev().getPlaylistStore();
+        store.insertToDatabase(conn, name, file_name);
     }
 }

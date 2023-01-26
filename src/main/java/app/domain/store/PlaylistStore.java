@@ -66,14 +66,27 @@ public class PlaylistStore {
 
     public void insertToDatabase(Connection conn, String name) {
         try {
-            PreparedStatement stat = conn.prepareStatement("INSERT INTO Global_Playlist (name) VALUES (?)");
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO Global_Playlist (name_ID) VALUES (?)");
             stat.setString(1, name);
             stat.executeUpdate();
 
+            conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
 
+    public void insertToDatabase(Connection conn, String name, String file_name) {
+        try {
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO GlobalPlaylist_Music (name_ID, fileName_ID) VALUES (?, ?)");
+            stat.setString(1, name);
+            stat.setString(2, file_name);
+            stat.executeUpdate();
+
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

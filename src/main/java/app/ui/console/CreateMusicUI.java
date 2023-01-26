@@ -4,6 +4,7 @@ import app.controller.MusicController;
 import app.domain.model.Music;
 import app.ui.console.utils.Utils;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,12 @@ public class CreateMusicUI implements Runnable {
             if( ctrl.dataValidation(music)) {
                 if(ctrl.addMusic(music)) {
                     System.out.println("< The music has been registered in the system successfully >");
-
+                    try {
+                        Connection conn = ctrl.getServerConnection();
+                        ctrl.insertToDatabase(conn, file_name, name, time, artist);
+                    } catch (Exception e) {
+                        System.err.println("« Error: Failed connect to SQL server »");
+                    }
                 }else{
                     System.err.println("« Error: The music introduced already exists in the system »");
                 }

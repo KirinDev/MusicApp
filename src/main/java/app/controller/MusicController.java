@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.database.Driver;
 import app.domain.model.Music;
 import app.domain.store.MusicStore;
 
@@ -28,8 +29,13 @@ public class MusicController {
         return store.add(music);
     }
 
+    public Connection getServerConnection() {
+        Driver driver = this.app.getKirinDev().getDriver();
+        return driver.connectToSQLServer();
+    }
+
     public void insertToDatabase(Connection conn, String name, String file_name, String time, String artist) {
         MusicStore store = this.app.getKirinDev().getMusicStore();
-        store.insertToDatabase(conn, name, file_name, time, artist);
+        store.insertToDatabase(conn, file_name, name, time, artist);
     }
 }

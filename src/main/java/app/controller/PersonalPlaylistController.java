@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.database.Driver;
 import app.domain.model.Email;
 import app.domain.model.Music;
 import app.domain.model.Playlist;
@@ -70,8 +71,16 @@ public class PersonalPlaylistController {
         user.addMusicToPlaylist(playlist, music);
     }
 
-    public void insertToDatabase(Connection conn, ) {
-        MusicStore store = this.app.getKirinDev().getMusicStore();
-        store.insertToDatabase(conn, name, file_name, time, artist);
+    public Connection getServerConnection() {
+        Driver driver = this.app.getKirinDev().getDriver();
+        return driver.connectToSQLServer();
+    }
+
+    public void insertToDatabase(Connection conn, String name, String email, User user) {
+        user.insertToDatabase(conn, name, email);
+    }
+
+    public void insertToDatabase(Connection conn, String name, String email, String file_name, User user) {
+        user.insertToDatabase(conn, name, email, file_name);
     }
 }

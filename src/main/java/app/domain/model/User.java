@@ -3,9 +3,7 @@ package app.domain.model;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 public class User {
@@ -121,12 +119,34 @@ public class User {
         playlist.addMusic(music);
     }
 
-    public void insertToDatabase(Connection conn, String name) {
+    public void insertToDatabase(Connection conn, String name, String email) {
         try {
-            PreparedStatement stat = conn.prepareStatement("INSERT INTO Pers_Playlist (name_ID) VALUES (?)");
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO Pers_Playlist (name, email_ID) VALUES (?, ?)");
             stat.setString(1, name);
+            stat.setString(2, email);
             stat.executeUpdate();
 
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void insertToDatabase(Connection conn, String name, String email, String file_name) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT pplaylist_ID FROM Pers_Playlist WHERE (email_ID = ? AND name = ?)");
+            stmt.setString(1, email);
+            stmt.setString(2, name);
+            ResultSet rs = stmt.executeQuery();
+
+            int code_ID = rs.getInt("pplaylist_ID");
+
+            PreparedStatement stat = conn.prepareStatement("INSERT INTO PersPlaylist_Music (pplaylist_ID, fileName_ID) VALUES (?, ?)");
+            stat.setInt(1, code_ID);
+            stat.setString(2, file_name);
+            stat.executeUpdate();
+
+            conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

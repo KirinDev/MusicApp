@@ -9,6 +9,7 @@ import app.mappers.dto.MusicDTO;
 import app.mappers.dto.PlaylistDTO;
 import app.ui.console.utils.Utils;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,13 @@ public class AddToPersPlaylistUI implements Runnable {
         Music music = ctrl.getMusicByNameArtist(tempMusic.getName(), tempMusic.getArtist());
 
         ctrl.addMusicToPlaylist(playlist, music, user);
+
+        try {
+            Connection conn = ctrl.getServerConnection();
+            ctrl.insertToDatabase(conn, playlist.getName(), email.getEmail(), music.getFile_name(), user);
+        } catch (Exception e) {
+            System.err.println("« Error: Failed connect to SQL server »");
+        }
 
     }
 
