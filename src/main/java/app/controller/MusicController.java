@@ -34,7 +34,7 @@ public class MusicController {
         return driver.connectToSQLServer();
     }
 
-    public void insertToDatabase(Connection conn, String name, String file_name, String time, String artist) {
+    public void insertToDatabase(Connection conn, String file_name, String name, String time, String artist) {
         MusicStore store = this.app.getKirinDev().getMusicStore();
         store.insertToDatabase(conn, file_name, name, time, artist);
     }

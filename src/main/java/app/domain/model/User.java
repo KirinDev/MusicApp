@@ -139,12 +139,14 @@ public class User {
             stmt.setString(2, name);
             ResultSet rs = stmt.executeQuery();
 
-            int code_ID = rs.getInt("pplaylist_ID");
+            while(rs.next()) {
+                int code_ID = rs.getInt("pplaylist_ID");
 
-            PreparedStatement stat = conn.prepareStatement("INSERT INTO PersPlaylist_Music (pplaylist_ID, fileName_ID) VALUES (?, ?)");
-            stat.setInt(1, code_ID);
-            stat.setString(2, file_name);
-            stat.executeUpdate();
+                PreparedStatement stat = conn.prepareStatement("INSERT INTO PersPlaylist_Music (pplaylist_ID, fileName_ID) VALUES (?, ?)");
+                stat.setInt(1, code_ID);
+                stat.setString(2, file_name);
+                stat.executeUpdate();
+            }
 
             conn.close();
         } catch (SQLException ex) {
