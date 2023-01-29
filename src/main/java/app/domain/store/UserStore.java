@@ -78,6 +78,18 @@ public class UserStore {
         return user;
     }
 
+    public User getUserByID(String email) {
+        Iterator<User> var2 = this.store.iterator();
+        User user;
+        do {
+            user = var2.next();
+            if(user.getId().getEmail().equals(email)) {
+                return user;
+            }
+        } while(var2.hasNext());
+        return user;
+    }
+
     public boolean exists(String email) {
         Optional<User> result = this.getById(email);
         return result.isPresent();

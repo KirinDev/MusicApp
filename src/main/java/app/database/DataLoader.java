@@ -4,9 +4,11 @@ import app.auth.AuthFacade;
 import app.controller.App;
 import app.domain.model.Music;
 import app.domain.model.Playlist;
+import app.domain.model.User;
 import app.domain.shared.Constants;
 import app.domain.store.MusicStore;
 import app.domain.store.PlaylistStore;
+import app.domain.store.UserStore;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +29,7 @@ public class DataLoader {
         loadUsersData(conn);
         loadMusicData(conn);
         loadPlaylistData(conn);
+        loadPersonalPlaylistData(conn);
     }
 
     public void loadUsersData(Connection conn) {
@@ -47,7 +50,6 @@ public class DataLoader {
         }catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public void loadMusicData(Connection conn) {
@@ -69,7 +71,6 @@ public class DataLoader {
         }catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public void loadPlaylistData(Connection conn) {
@@ -103,17 +104,56 @@ public class DataLoader {
 
                         musics.add(new Music(nameMusic, file_name, time, artist));
                     }
-
                 }
-
                 store.add(new Playlist(name, musics));
             }
-
         }catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
+    public void loadPersonalPlaylistData(Connection conn) {
+
+        AuthFacade auth = this.app.getKirinDev().getAuthFacade();
+        UserStore store = auth.getUserStore();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Pers_Playlist");
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                int playlistID = rs.getInt("pplaylist_ID");
+                String name = rs.getString("name");
+                String email = rs.getString("email_ID");
+
+                PreparedStatement stmt2 = conn.prepareStatement("SELECT fileName_ID FROM PersPlaylist_Music WHERE pplaylist_ID = ?");
+                stmt2.setInt(1, playlistID);
+
+                ResultSet rs2 = stmt2.executeQuery();
+
+                Set<Music> musics = new HashSet<>();
+                while(rs2.next()) {
+                    String file = rs2.getString("fileName_ID");
+                    PreparedStatement stmt3 = conn.prepareStatement("SELECT * FROM Music WHERE fileName_ID = ?");
+                    stmt3.setString(1, file);
+
+                    ResultSet rs3 = stmt3.executeQuery();
+
+                    while(rs3.next()) {
+                        String nameMusic = rs3.getString("name");
+                        String file_name = rs3.getString("fileName_ID");
+                        String time = rs3.getString("time");
+                        String artist = rs3.getString("artist");
+
+                        musics.add(new Music(nameMusic, file_name, time, artist));
+                    }
+                }
+                User user = store.getUserByID(email);
+                user.addPlaylist(new Playlist(name, musics));
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 }
