@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.LoginUI">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1280.0">
+         <image>
+            <Image url="@../img/login_background.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="253.0" layoutY="140.0" opacity="0.8" prefHeight="521.0" prefWidth="774.0" style="-fx-background-color: #080926; -fx-background-radius: 30;">
+         <children>
+            <Label layoutX="178.0" layoutY="39.0" prefHeight="36.0" prefWidth="120.0" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Segoe Print" size="39.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailField" layoutX="230.0" layoutY="184.0" prefHeight="33.0" prefWidth="315.0" style="-fx-background-radius: 30;" />
+            <Label layoutX="238.0" layoutY="144.0" prefHeight="27.0" prefWidth="65.0" text="Email" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="18.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" layoutX="230.0" layoutY="288.0" prefHeight="33.0" prefWidth="315.0" style="-fx-background-radius: 30;" />
+            <Label layoutX="238.0" layoutY="254.0" prefHeight="27.0" prefWidth="95.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnDoLogin" layoutX="332.0" layoutY="390.0" mnemonicParsing="false" onAction="#doLoginButton" onMouseEntered="#enterMouseOver" onMouseExited="#enterMouseExit" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #F78C28; -fx-background-radius: 30;" text="Enter">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="124.0" layoutY="52.0">
+               <image>
+                  <Image url="@../img/icon_login.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="32.0" layoutX="287.0" layoutY="141.0">
+               <image>
+                  <Image url="@../img/icon_email.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="320.0" layoutY="254.0">
+               <image>
+                  <Image url="@../img/icon_pwd.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

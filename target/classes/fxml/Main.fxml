@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.MainUI">
+   <children>
+      <BorderPane prefHeight="800.0" prefWidth="1280.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="800.0" fitWidth="387.0">
+                     <image>
+                        <Image url="@../img/music_girl.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="643.0" prefWidth="767.0" style="-fx-background-color: #1d2a35;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="800.0" fitWidth="893.0">
+                     <image>
+                        <Image url="@../img/background.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="231.0" layoutY="107.0" prefHeight="114.0" prefWidth="431.0" text="BONFIRE" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Bradley Hand ITC" size="96.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="316.0" layoutY="241.0" prefHeight="48.0" prefWidth="263.0" text="Music App" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="registerButton" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="434.0" mnemonicParsing="false" onAction="#register" onMouseExited="#registerMouseExit" onMouseMoved="#registerMouseOver" prefHeight="37.0" prefWidth="310.0" style="-fx-background-color: #D9EEE1; -fx-background-radius: 30;" text="Register">
+                     <font>
+                        <Font name="Segoe UI Black" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="715.0" layoutY="769.0" prefHeight="14.0" prefWidth="164.0" text="developed by KirinDev" textFill="#a4a3a3">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <ImageView fitHeight="184.0" fitWidth="241.0" layoutX="338.0" layoutY="528.0">
+                     <image>
+                        <Image url="@../img/bonfire.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="363.0" mnemonicParsing="false" onAction="#login" onMouseExited="#loginMouseExit" onMouseMoved="#loginMouseOver" prefHeight="37.0" prefWidth="310.0" style="-fx-background-color: #D9EEE1; -fx-background-radius: 30;" text="Login">
+                     <font>
+                        <Font name="Segoe UI Black" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
