@@ -1,0 +1,13 @@
+.menu {
+    -fx-background-color: #0E1920;
+}
+
+.menu-button {
+    -fx-background-radius: 30px;
+    -fx-background-color: #16222E;
+}
+
+.menu-button:hover {
+    -fx-background-color: #D9EEE1;
+    -fx-text-fill: black;
+}

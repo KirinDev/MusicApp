@@ -20,14 +20,14 @@ public class MainUI implements Initializable {
     public Button loginButton;
     public Button registerButton;
 
-    private App mainApp;
+    private AppGUI mainAppGUI;
 
-    public void setMainApp(App mainApp) {
-        this.mainApp = mainApp;
+    public void setMainApp(AppGUI mainAppGUI) {
+        this.mainAppGUI = mainAppGUI;
     }
 
-    public App getMainApp() {
-        return this.mainApp;
+    public AppGUI getMainApp() {
+        return this.mainAppGUI;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class MainUI implements Initializable {
     @FXML
     public void login(ActionEvent actionEvent) {
         try {
-            LoginUI loginUI = (LoginUI) this.mainApp.replaceSceneContent("/fxml/Login.fxml");
-            loginUI.setMainApp(this.mainApp);
+            LoginUI loginUI = (LoginUI) this.mainAppGUI.replaceSceneContent("/fxml/Login.fxml");
+            loginUI.setMainApp(this.mainAppGUI);
         } catch (Exception e) {
             AlertUI.infoAlert(e.getMessage(), "Error");
         }
@@ -47,8 +47,8 @@ public class MainUI implements Initializable {
     @FXML
     public void register(ActionEvent actionEvent) {
         try {
-            RegisterUI registerUI = (RegisterUI) this.mainApp.replaceSceneContent("/fxml/Register.fxml");
-            registerUI.setMainApp(this.mainApp);
+            RegisterUI registerUI = (RegisterUI) this.mainAppGUI.replaceSceneContent("/fxml/Register.fxml");
+            registerUI.setMainApp(this.mainAppGUI);
         } catch (Exception e) {
             AlertUI.infoAlert(e.getMessage(), "Error");
         }

@@ -1,16 +1,20 @@
 package app.ui.gui;
 
 import app.controller.AuthController;
+import app.controller.App;
 import app.domain.shared.Constants;
 import app.mappers.dto.UserRoleDTO;
 import app.ui.gui.roles.AdminUI;
 import app.ui.gui.roles.UserUI;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
@@ -25,10 +29,12 @@ import java.util.ResourceBundle;
 
 public class LoginUI implements Initializable {
 
-    private App mainApp;
+    private App app;
+    private AppGUI mainApp;
     private AuthController authController;
     private Stage stage;
     private UserRoleDTO role;
+    private String emailLable;
 
     @FXML
     private Button btnDoLogin;
@@ -38,16 +44,17 @@ public class LoginUI implements Initializable {
     private PasswordField passwordField;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         authController = new AuthController();
     }
 
-    public void setMainApp(App mainApp) {
+    public void setMainApp(AppGUI mainApp) {
         this.mainApp = mainApp;
     }
 
-    public App getMainApp() {
+    public AppGUI getMainApp() {
         return this.mainApp;
     }
 
@@ -65,6 +72,7 @@ public class LoginUI implements Initializable {
                 if ((roles == null) || (roles.isEmpty())) {
                     AlertUI.infoAlert("Login Error", "User has no valid roles.");
                 } else {
+                    this.emailLable = email;
                     this.role = roles.get(0);
                 }
             }
@@ -90,6 +98,7 @@ public class LoginUI implements Initializable {
                 try {
                     UserUI userUI = (UserUI) this.mainApp.replaceSceneContent("/fxml/roles/User.fxml");
                     userUI.setLoginUI(this);
+                    userUI.setEmailLabel(this.emailLable);
                     userUI.setMainApp(this.mainApp);
                 } catch (Exception e) {
                     AlertUI.infoAlert(e.getMessage(), "Error");

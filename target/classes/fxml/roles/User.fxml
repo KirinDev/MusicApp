@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.roles.User"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../../css/menu_bar.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.roles.UserUI">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1280.0">
+         <image>
+            <Image url="@../../img/main_background.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane opacity="0.88" prefHeight="60.0" prefWidth="1280.0" style="-fx-background-color: #1d2a35;">
+         <children>
+            <Label layoutX="14.0" layoutY="4.0" prefHeight="24.0" prefWidth="200.0" text="BONFIRE" textFill="WHITE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="37.0" />
+               </font>
+            </Label>
+            <Label fx:id="userEmail" layoutX="1066.0" layoutY="23.0" prefHeight="17.0" prefWidth="190.0" text="User" textFill="WHITE">
+               <font>
+                  <Font name="Broadway" size="13.0" />
+               </font></Label>
+            <ImageView layoutX="1028.0" layoutY="16.0">
+               <image>
+                  <Image url="@../../img/icon_user.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="71.0" prefHeight="729.0" prefWidth="197.0">
+         <children>
+            <Pane layoutY="-11.0" opacity="0.93" prefHeight="740.0" prefWidth="176.0" styleClass="menu" stylesheets="@../../css/menu_bar.css">
+               <children>
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/menu_bar.css" text="Search" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Bold" size="17.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="117.0" layoutY="20.0" styleClass="menu-button">
+                     <image>
+                        <Image url="@../../img/icon_search.png" />
+                     </image>
+                  </ImageView>
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/menu_bar.css" text="Playlists" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Bold" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/menu_bar.css" text="My Playlists" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Bold" size="17.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

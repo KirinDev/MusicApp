@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class App extends Application  {
+public class AppGUI extends Application  {
 
     private Stage stage;
     private final double MINIMUM_WINDOW_WIDTH = 400.0;
@@ -40,15 +40,15 @@ public class App extends Application  {
             MainUI mainUI = (MainUI) replaceSceneContent("/fxml/Main.fxml");
             mainUI.setMainApp(this);
         } catch (Exception ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AppGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public Initializable replaceSceneContent(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        InputStream in = App.class.getResourceAsStream(fxml);
+        InputStream in = AppGUI.class.getResourceAsStream(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
-        loader.setLocation(App.class.getResource(fxml));
+        loader.setLocation(AppGUI.class.getResource(fxml));
         Pane page;
         try {
             page = (Pane) loader.load(in);
@@ -56,6 +56,7 @@ public class App extends Application  {
             in.close();
         }
         Scene scene = new Scene(page, SCENE_WIDTH, SCENE_HEIGHT);
+        scene.getStylesheets().add("/css/menu_bar.css");
         this.stage.setScene(scene);
         this.stage.sizeToScene();
         return (Initializable) loader.getController();
@@ -63,9 +64,9 @@ public class App extends Application  {
 
     public Initializable replaceSceneContentSplitPane(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        InputStream in = App.class.getResourceAsStream(fxml);
+        InputStream in = AppGUI.class.getResourceAsStream(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
-        loader.setLocation(App.class.getResource(fxml));
+        loader.setLocation(AppGUI.class.getResource(fxml));
         SplitPane page;
         try {
             page = (SplitPane) loader.load(in);
@@ -80,6 +81,7 @@ public class App extends Application  {
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 }

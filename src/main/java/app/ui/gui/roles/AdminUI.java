@@ -1,6 +1,6 @@
 package app.ui.gui.roles;
 
-import app.ui.gui.App;
+import app.ui.gui.AppGUI;
 import app.ui.gui.LoginUI;
 import javafx.fxml.Initializable;
 
@@ -9,21 +9,21 @@ import java.util.ResourceBundle;
 
 public class AdminUI implements Initializable {
 
-    private App mainApp;
+    private AppGUI mainAppGUI;
     private LoginUI loginUI;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
 
-    public void setMainApp(App mainApp) {
-        this.mainApp = mainApp;
+    public void setMainApp(AppGUI mainAppGUI) {
+        this.mainAppGUI = mainAppGUI;
     }
 
     public void setLoginUI(LoginUI loginUI) {
         this.loginUI = loginUI;
     }
 
-    public App getMainApp() {
-        return this.mainApp;
+    public AppGUI getMainApp() {
+        return this.mainAppGUI;
     }
 }

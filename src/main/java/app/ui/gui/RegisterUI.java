@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 public class RegisterUI implements Initializable {
 
-    private App mainApp;
+    private AppGUI mainAppGUI;
     private AuthController authController;
 
     @Override
@@ -16,11 +16,11 @@ public class RegisterUI implements Initializable {
         authController = new AuthController();
     }
 
-    public void setMainApp(App mainApp) {
-        this.mainApp = mainApp;
+    public void setMainApp(AppGUI mainAppGUI) {
+        this.mainAppGUI = mainAppGUI;
     }
 
-    public App getMainApp() {
-        return this.mainApp;
+    public AppGUI getMainApp() {
+        return this.mainAppGUI;
     }
 }

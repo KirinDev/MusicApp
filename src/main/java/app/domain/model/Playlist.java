@@ -2,6 +2,8 @@ package app.domain.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Playlist {
@@ -32,5 +34,14 @@ public class Playlist {
 
     public void addMusic(Music music) {
         musics.add(music);
+    }
+
+    public List<String> getMusicsString() {
+        List<String> lst = new ArrayList<>();
+        for (Music i : this.musics) {
+            String str = i.toString();
+            lst.add(str);
+        }
+        return lst;
     }
 }

@@ -61,4 +61,14 @@ public class Music {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "Music{" +
+                "name='" + name + '\'' +
+                ", file_name='" + file_name + '\'' +
+                ", time='" + time + '\'' +
+                ", artist='" + artist + '\'' +
+                '}';
+    }
 }
