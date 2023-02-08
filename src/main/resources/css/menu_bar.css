@@ -11,3 +11,10 @@
     -fx-background-color: #D9EEE1;
     -fx-text-fill: black;
 }
+
+.playlist {}
+
+.playlist:hover {
+    -fx-effect: dropshadow(three-pass-box, #D9EEE1, 10, 0.5, 0, 0);
+    -fx-cursor: hand;
+}
