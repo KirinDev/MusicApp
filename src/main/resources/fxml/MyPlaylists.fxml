@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../css/menu_bar.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.roles.UserUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.roles.UserUI">
    <children>
       <ImageView fitHeight="800.0" fitWidth="1280.0">
          <image>
@@ -35,9 +35,9 @@
       </AnchorPane>
       <AnchorPane layoutY="60.0" prefHeight="740.0" prefWidth="176.0">
          <children>
-            <Pane opacity="0.93" prefHeight="729.0" prefWidth="176.0" styleClass="menu" stylesheets="@../css/menu_bar.css">
+            <Pane opacity="0.93" prefHeight="729.0" prefWidth="176.0" styleClass="menu" stylesheets="@../css/styles.css">
                <children>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/menu_bar.css" text="Search" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/styles.css" text="Search" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
@@ -47,12 +47,12 @@
                         <Image url="@../img/icon_search.png" />
                      </image>
                   </ImageView>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/menu_bar.css" text="Playlists" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/styles.css" text="Playlists" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/menu_bar.css" text="My Playlists" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/styles.css" text="My Playlists" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>

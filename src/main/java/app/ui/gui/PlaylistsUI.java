@@ -1,6 +1,5 @@
 package app.ui.gui;
 
-import app.domain.model.Music;
 import app.domain.model.Playlist;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -21,15 +20,22 @@ public class PlaylistsUI implements Initializable {
     private ListView<String> musicsView;
 
     @FXML
+    private Label userEmail = new Label();
+
+    @FXML
     private Label playlistName = new Label();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        musicsView.getItems().addAll(playlist.getMusicsString());
     }
 
     public void setMainApp(AppGUI mainApp) {
         this.mainApp = mainApp;
+    }
+
+    public void setEmailLabel(String email) {
+        StringProperty str = new SimpleStringProperty(email);
+        this.userEmail.textProperty().bind(str);
     }
 
     public void setPlaylist(Playlist playlist) {
@@ -41,5 +47,8 @@ public class PlaylistsUI implements Initializable {
         this.playlistName.textProperty().bind(str);
     }
 
+    public void addPlaylists() {
+        this.musicsView.getItems().addAll(playlist.getMusicsString());
+    }
 
 }

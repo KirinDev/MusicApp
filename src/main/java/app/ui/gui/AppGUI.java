@@ -56,7 +56,7 @@ public class AppGUI extends Application  {
             in.close();
         }
         Scene scene = new Scene(page, SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getStylesheets().add("/css/menu_bar.css");
+        scene.getStylesheets().add("/css/styles.css");
         this.stage.setScene(scene);
         this.stage.sizeToScene();
         return (Initializable) loader.getController();

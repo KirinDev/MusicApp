@@ -32,9 +32,6 @@ public class UserUI implements Initializable {
     @FXML
     private Label userEmail = new Label();
 
-    @FXML
-    private GridPane grid = new GridPane();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ctrl = new GlobalPlaylistController();
@@ -57,18 +54,16 @@ public class UserUI implements Initializable {
         return this.mainAppGUI;
     }
 
-    public void selectAnimePlaylist() {
+    public void animeMouseClicked(MouseEvent action) {
         try {
-            PlaylistsUI playlistsUI = (PlaylistsUI) this.mainAppGUI.replaceSceneContent("/fxml/Playlists.fxml");
+            PlaylistsUI playlistsUI = (PlaylistsUI) this.mainAppGUI.replaceSceneContent("/fxml/Playlist.fxml");
             playlistsUI.setPlaylist(ctrl.getPlaylistByName("Anime"));
+            playlistsUI.setEmailLabel(this.userEmail.getText());
             playlistsUI.setPlaylistName("Anime");
+            playlistsUI.addPlaylists();
             playlistsUI.setMainApp(this.mainAppGUI);
         } catch (Exception e) {
             AlertUI.infoAlert(e.getMessage(), "Error");
         }
-    }
-
-    public void animeMouseClicked(MouseEvent action) {
-        selectAnimePlaylist();
     }
 }
