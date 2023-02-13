@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 public class AppGUI extends Application  {
 
     private Stage stage;
-    private final double MINIMUM_WINDOW_WIDTH = 400.0;
-    private final double MINIMUM_WINDOW_HEIGHT = 300.0;
+    private final double MAX_WINDOW_WIDTH = 1280;
+    private final double MAX_WINDOW_HEIGHT = 800;
     private final double SCENE_WIDTH = 1280;
     private final double SCENE_HEIGHT = 800;
 
@@ -27,6 +27,8 @@ public class AppGUI extends Application  {
         stage.setTitle("Bonfire");
         stage.setMinWidth(SCENE_WIDTH);
         stage.setMinHeight(SCENE_HEIGHT);
+        stage.setMaxWidth(MAX_WINDOW_WIDTH);
+        stage.setMaxHeight(MAX_WINDOW_HEIGHT);
         toMainScene();
         this.stage.show();
     }

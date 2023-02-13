@@ -58,6 +58,7 @@ public class UserUI implements Initializable {
         try {
             PlaylistsUI playlistsUI = (PlaylistsUI) this.mainAppGUI.replaceSceneContent("/fxml/Playlist.fxml");
             playlistsUI.setPlaylist(ctrl.getPlaylistByName("Anime"));
+            playlistsUI.setMusics();
             playlistsUI.setEmailLabel(this.userEmail.getText());
             playlistsUI.setPlaylistName("Anime");
             playlistsUI.addPlaylists();

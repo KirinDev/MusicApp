@@ -12,8 +12,12 @@ public class AudioPlayer implements LineListener {
 
     boolean isPlaybackCompleted;
     private Clip audioPlayer;
+    private long pauseTime;
+    private float volume;
 
-    public AudioPlayer() { }
+    public AudioPlayer() {
+        this.pauseTime = 0;
+    }
 
     @Override
     public void update(LineEvent event) {
@@ -44,26 +48,11 @@ public class AudioPlayer implements LineListener {
                 this.audioPlayer.addLineListener(this);
                 this.audioPlayer.open(audioStream);
 
-                FloatControl gainControl = (FloatControl) this.audioPlayer.getControl(FloatControl.Type.MASTER_GAIN);
-                float dB = (float) (Math.log(0.2) / Math.log(5.0) * 10.0);
-                gainControl.setValue(dB);
-
                 this.audioPlayer.setFramePosition(0);
 
             }
         }catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public void openPlaylist(PlaylistDTO playlist) {
-        List<MusicDTO> musics = playlist.getMusics();
-        for( MusicDTO i : musics ) {
-            try {
-                openAudio(i.getFile_name());
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -78,13 +67,28 @@ public class AudioPlayer implements LineListener {
         return pauseTime;
     }
 
+    public void playAudio2() {
+        this.audioPlayer.setMicrosecondPosition(this.pauseTime);
+        this.audioPlayer.start();
+    }
+
+    public void pauseAudio2() {
+        this.pauseTime = this.audioPlayer.getMicrosecondPosition();
+        this.audioPlayer.stop();
+    }
+
     public void stopAudio() {
         this.audioPlayer.stop();
         this.audioPlayer.close();
+        this.pauseTime = 0;
     }
 
     public long getAudioPosition() {
         return this.audioPlayer.getMicrosecondPosition();
+    }
+
+    public long getDuration() {
+        return this.audioPlayer.getMicrosecondLength();
     }
 
     public boolean isRunning() {
@@ -93,5 +97,19 @@ public class AudioPlayer implements LineListener {
 
     public void setPlaybackCompleted() {
         this.isPlaybackCompleted = false;
+    }
+
+    public float getVolume() {
+        FloatControl gainControl = (FloatControl) this.audioPlayer.getControl(FloatControl.Type.MASTER_GAIN);
+        float range = gainControl.getMaximum() - gainControl.getMinimum();
+        return (this.volume - gainControl.getMinimum()) / range ;
+    }
+
+    public void setVolume(float volume) {
+        FloatControl gainControl = (FloatControl) this.audioPlayer.getControl(FloatControl.Type.MASTER_GAIN);
+        float range = gainControl.getMaximum() - gainControl.getMinimum();
+        float gain = (range * volume) + gainControl.getMinimum();
+        gainControl.setValue(gain);
+        this.volume = gain;
     }
 }

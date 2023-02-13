@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../../css/menu_bar.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.roles.UserUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.roles.UserUI">
    <children>
       <ImageView fitHeight="800.0" fitWidth="1280.0" layoutX="1.0">
          <image>
@@ -22,11 +22,11 @@
                   <Font name="Forte" size="37.0" />
                </font>
             </Label>
-            <Label fx:id="userEmail" layoutX="991.0" layoutY="23.0" prefHeight="23.0" prefWidth="190.0" text="User" textFill="WHITE">
+            <Label fx:id="userEmail" layoutX="990.0" layoutY="19.0" prefHeight="23.0" prefWidth="190.0" text="User" textFill="WHITE">
                <font>
                   <Font name="Broadway" size="13.0" />
                </font></Label>
-            <ImageView layoutX="953.0" layoutY="19.0">
+            <ImageView layoutX="953.0" layoutY="16.0">
                <image>
                   <Image url="@../../img/icon_user.png" />
                </image>
@@ -35,29 +35,29 @@
       </AnchorPane>
       <AnchorPane layoutY="60.0" prefHeight="740.0" prefWidth="173.0">
          <children>
-            <Pane opacity="0.93" prefHeight="740.0" prefWidth="176.0" styleClass="menu" stylesheets="@../../css/menu_bar.css">
+            <Pane opacity="0.93" prefHeight="740.0" prefWidth="176.0" styleClass="menu" stylesheets="@../../css/styles.css">
                <children>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/menu_bar.css" text="Search" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="Search" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/menu_bar.css" text="Playlists" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="Playlists" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/menu_bar.css" text="My Playlists" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="My Playlists" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="123.0" layoutY="23.0">
+                  <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="135.0" layoutY="23.0">
                      <image>
                         <Image url="@../../img/icon_search.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="123.0" layoutY="79.0">
+                  <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="135.0" layoutY="79.0">
                      <image>
                         <Image url="@../../img/icon_gplaylist.png" />
                      </image>
@@ -83,7 +83,7 @@
           <RowConstraints minHeight="10.0" prefHeight="220.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane onMouseClicked="#animeMouseClicked" prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/menu_bar.css">
+            <AnchorPane onMouseClicked="#animeMouseClicked" prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/styles.css">
                <children>
                   <Label alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: #0E1920;" text="Anime" textFill="WHITE">
                      <font>
@@ -97,7 +97,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="1">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/styles.css" GridPane.columnIndex="1">
                <children>
                   <Label alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: #0E1920;" text="Pop" textFill="WHITE">
                      <font>
@@ -110,7 +110,7 @@
                      </image>
                   </ImageView>
                </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="2">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/styles.css" GridPane.columnIndex="2">
                <children>
                   <Label alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: #0E1920;" text="Rock" textFill="WHITE">
                      <font>
@@ -123,7 +123,7 @@
                      </image>
                   </ImageView>
                </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="3">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/styles.css" GridPane.columnIndex="3">
                <children>
                   <Label alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: #0E1920;" text="Electronic" textFill="WHITE">
                      <font>
@@ -136,7 +136,7 @@
                      </image>
                   </ImageView>
                </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/menu_bar.css" GridPane.rowIndex="1">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/styles.css" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: #0E1920;" text="Lofi" textFill="WHITE">
                      <font>
@@ -149,7 +149,7 @@
                      </image>
                   </ImageView>
                </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/menu_bar.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="playlist" stylesheets="@../../css/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: #0E1920;" text="Metal" textFill="WHITE">
                      <font>

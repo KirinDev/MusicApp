@@ -1,7 +1,10 @@
 package app.controller;
 
 import app.audioplayer.AudioPlayer;
+import app.mappers.dto.MusicDTO;
 import app.mappers.dto.PlaylistDTO;
+
+import java.util.List;
 
 public class MusicPlayerController {
 
@@ -16,14 +19,29 @@ public class MusicPlayerController {
         player.openAudio(music);
     }
 
-    public void openPlaylist(PlaylistDTO playlist) {
+    public void changeVolume(float db) {
         AudioPlayer player = this.app.getKirinDev().getPlayer();
-        player.openPlaylist(playlist);
+        player.setVolume(db);
+    }
+
+    public float getVolume() {
+        AudioPlayer player = this.app.getKirinDev().getPlayer();
+        return player.getVolume();
     }
 
     public void play( long time ) {
         AudioPlayer player = this.app.getKirinDev().getPlayer();
         player.playAudio(time);
+    }
+
+    public void play2() {
+        AudioPlayer player = this.app.getKirinDev().getPlayer();
+        player.playAudio2();
+    }
+
+    public void pause2() {
+        AudioPlayer player = this.app.getKirinDev().getPlayer();
+        player.pauseAudio2();
     }
 
     public void stop() {
@@ -39,6 +57,11 @@ public class MusicPlayerController {
     public long getTime() {
         AudioPlayer player = this.app.getKirinDev().getPlayer();
         return player.getAudioPosition();
+    }
+
+    public long getDuration() {
+        AudioPlayer player = this.app.getKirinDev().getPlayer();
+        return player.getDuration();
     }
 
     public boolean checkIfRunning() {
