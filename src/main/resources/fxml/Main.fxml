@@ -29,29 +29,32 @@
                <children>
                   <ImageView fitHeight="800.0" fitWidth="893.0">
                      <image>
-                        <Image url="@../img/background.jpg" />
+                        <Image url="@../img/login_background.jpg" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" layoutX="231.0" layoutY="107.0" prefHeight="114.0" prefWidth="431.0" text="BONFIRE" textAlignment="CENTER" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="231.0" layoutY="107.0" prefHeight="114.0" prefWidth="431.0" text="Bonfire" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Bradley Hand ITC" size="96.0" />
+                        <Font name="Forte" size="96.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" layoutX="316.0" layoutY="241.0" prefHeight="48.0" prefWidth="263.0" text="Music App" textFill="WHITE">
                      <font>
-                        <Font name="Verdana" size="24.0" />
+                        <Font name="Dubai Bold" size="24.0" />
                      </font>
                   </Label>
                   <Button fx:id="registerButton" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="434.0" mnemonicParsing="false" onAction="#register" onMouseExited="#registerMouseExit" onMouseMoved="#registerMouseOver" prefHeight="37.0" prefWidth="310.0" style="-fx-background-color: #D9EEE1; -fx-background-radius: 30;" text="Register">
                      <font>
                         <Font name="Segoe UI Black" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Label layoutX="715.0" layoutY="769.0" prefHeight="14.0" prefWidth="164.0" text="developed by KirinDev" textFill="#a4a3a3">
                      <font>
                         <Font size="16.0" />
                      </font></Label>
-                  <ImageView fitHeight="184.0" fitWidth="241.0" layoutX="338.0" layoutY="528.0">
+                  <ImageView fitHeight="184.0" fitWidth="241.0" layoutX="338.0" layoutY="528.0" opacity="0.82">
                      <image>
                         <Image url="@../img/bonfire.png" />
                      </image>
@@ -60,7 +63,25 @@
                      <font>
                         <Font name="Segoe UI Black" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="436.0" layoutY="741.0">
+                     <image>
+                        <Image url="@../img/icon_insta.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="381.0" layoutY="741.0">
+                     <image>
+                        <Image url="@../img/icon_twitter.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="490.0" layoutY="741.0">
+                     <image>
+                        <Image url="@../img/icon_github.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </center>

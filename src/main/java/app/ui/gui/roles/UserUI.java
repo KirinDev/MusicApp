@@ -3,15 +3,13 @@ package app.ui.gui.roles;
 import app.controller.App;
 import app.controller.GlobalPlaylistController;
 import app.domain.store.PlaylistStore;
-import app.ui.gui.AlertUI;
-import app.ui.gui.AppGUI;
-import app.ui.gui.LoginUI;
-import app.ui.gui.PlaylistsUI;
+import app.ui.gui.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -31,6 +29,10 @@ public class UserUI implements Initializable {
 
     @FXML
     private Label userEmail = new Label();
+    @FXML
+    private Button myPlaylists;
+    @FXML
+    private Button search;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,6 +65,24 @@ public class UserUI implements Initializable {
             playlistsUI.setPlaylistName("Anime");
             playlistsUI.addPlaylists();
             playlistsUI.setMainApp(this.mainAppGUI);
+        } catch (Exception e) {
+            AlertUI.infoAlert(e.getMessage(), "Error");
+        }
+    }
+
+    public void goToMyPlaylists() {
+        try {
+             MyPlaylistsUI myPlaylistsUI = (MyPlaylistsUI) this.mainAppGUI.replaceSceneContent("/fxml/MyPlaylist.fxml");
+            myPlaylistsUI.setMainApp(this.mainAppGUI);
+        } catch (Exception e) {
+            AlertUI.infoAlert(e.getMessage(), "Error");
+        }
+    }
+
+    public void goToSearch() {
+        try {
+            SearchUI searchUI = (SearchUI) this.mainAppGUI.replaceSceneContent("/fxml/Search.fxml");
+            searchUI.setMainApp(this.mainAppGUI);
         } catch (Exception e) {
             AlertUI.infoAlert(e.getMessage(), "Error");
         }

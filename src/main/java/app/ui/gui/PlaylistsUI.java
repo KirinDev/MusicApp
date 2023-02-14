@@ -32,6 +32,11 @@ public class PlaylistsUI implements Initializable {
     private TimerTask task;
 
     @FXML
+    private Button myPlaylists;
+    @FXML
+    private Button search;
+
+    @FXML
     private ListView<String> musicsView;
 
     @FXML
@@ -166,5 +171,23 @@ public class PlaylistsUI implements Initializable {
     public void cancelTimer() {
         this.running = false;
         this.timer.cancel();
+    }
+
+    public void goToMyPlaylists() {
+        try {
+            MyPlaylistsUI myPlaylistsUI = (MyPlaylistsUI) this.mainApp.replaceSceneContent("/fxml/MyPlaylist.fxml");
+            myPlaylistsUI.setMainApp(this.mainApp);
+        } catch (Exception e) {
+            AlertUI.infoAlert(e.getMessage(), "Error");
+        }
+    }
+
+    public void goToSearch() {
+        try {
+            SearchUI searchUI = (SearchUI) this.mainApp.replaceSceneContent("/fxml/Search.fxml");
+            searchUI.setMainApp(this.mainApp);
+        } catch (Exception e) {
+            AlertUI.infoAlert(e.getMessage(), "Error");
+        }
     }
 }

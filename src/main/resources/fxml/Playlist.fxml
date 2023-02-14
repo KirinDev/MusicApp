@@ -37,7 +37,7 @@
          <children>
             <Pane opacity="0.93" prefHeight="729.0" prefWidth="176.0" styleClass="menu" stylesheets="@../css/styles.css">
                <children>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/styles.css" text="Search" textFill="WHITE">
+                  <Button fx:id="search" onAction="#goToSearch" alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/styles.css" text="Search" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
@@ -47,7 +47,7 @@
                         <Image url="@../img/icon_search.png" />
                      </image>
                   </ImageView>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/styles.css" text="Playlists" textFill="WHITE">
+                  <Button fx:id="myPlaylists" onAction="#goToMyPlaylists" alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../css/styles.css" text="Playlists" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
@@ -83,13 +83,13 @@
                   <Image url="@../img/icon_myplaylist.png" />
                </image>
             </ImageView>
-            <ListView fx:id="musicsView" layoutX="17.0" layoutY="104.0" prefHeight="397.0" prefWidth="875.0" />
+            <ListView fx:id="musicsView" layoutX="17.0" layoutY="104.0" prefHeight="397.0" prefWidth="875.0" style="-fx-background-radius: 15;" />
             <Label fx:id="playlistName" layoutX="156.0" layoutY="31.0" prefHeight="41.0" prefWidth="106.0" text="null" textFill="WHITE">
                <font>
                   <Font name="Dubai Bold" size="20.0" />
                </font>
             </Label>
-            <ScrollBar layoutX="878.0" layoutY="104.0" orientation="VERTICAL" prefHeight="397.0" prefWidth="14.0" />
+            <ScrollBar layoutX="874.0" layoutY="104.0" orientation="VERTICAL" prefHeight="397.0" prefWidth="14.0" style="-fx-background-radius: 15;" />
          </children>
       </Pane>
       <AnchorPane layoutX="243.0" layoutY="641.0" prefHeight="144.0" prefWidth="909.0">
@@ -128,12 +128,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label layoutX="24.0" layoutY="14.0" prefHeight="32.0" prefWidth="112.0" text="Now Playing :" textFill="WHITE">
+                  <Label layoutX="51.0" layoutY="14.0" prefHeight="32.0" prefWidth="112.0" text="Now Playing :" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="songName" layoutX="136.0" layoutY="14.0" prefHeight="32.0" prefWidth="242.0" text="null" textFill="WHITE">
+                  <Label fx:id="songName" layoutX="170.0" layoutY="14.0" prefHeight="32.0" prefWidth="308.0" text="null" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="18.0" />
                      </font>
@@ -143,6 +143,11 @@
                   <ImageView layoutX="619.0" layoutY="58.0">
                      <image>
                         <Image url="@../img/icon_volume.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="21.0" layoutY="18.0">
+                     <image>
+                        <Image url="@../img/icon_audiowave.png" />
                      </image>
                   </ImageView>
                </children>
