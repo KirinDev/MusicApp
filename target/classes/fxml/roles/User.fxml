@@ -37,20 +37,29 @@
          <children>
             <Pane opacity="0.93" prefHeight="740.0" prefWidth="176.0" styleClass="menu" stylesheets="@../../css/styles.css">
                <children>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="Search" textFill="WHITE">
+                  <Button fx:id="search" alignment="CENTER" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToSearch" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="Search" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button alignment="CENTER" layoutX="7.0" layoutY="70.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="Playlists" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button alignment="CENTER" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="My Playlists" textFill="WHITE">
+                  <Button fx:id="myPlaylists" alignment="CENTER" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" onAction="#goToMyPlaylists" prefHeight="41.0" prefWidth="163.0" styleClass="menu-button" stylesheets="@../../css/styles.css" text="My Playlists" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="17.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="135.0" layoutY="23.0">
                      <image>

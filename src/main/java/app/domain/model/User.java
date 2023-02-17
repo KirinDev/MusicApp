@@ -176,4 +176,13 @@ public class User {
     public String toString() {
         return String.format("%s - %s", this.email.toString(), this.name);
     }
+
+    public List<String> getPlaylistsString() {
+        List<String> lst = new ArrayList<>();
+        for (Playlist i : this.playlists) {
+            String str = i.toString();
+            lst.add(str);
+        }
+        return lst;
+    }
 }

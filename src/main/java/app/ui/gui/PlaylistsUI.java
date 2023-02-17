@@ -27,12 +27,15 @@ public class PlaylistsUI implements Initializable {
     private MusicMapper mapper;
 
     private int currentSong;
+    private String currentSelSong;
+    private String song;
     private boolean running;
     private Timer timer;
     private TimerTask task;
 
     @FXML
     private Button myPlaylists;
+
     @FXML
     private Button search;
 
@@ -64,6 +67,13 @@ public class PlaylistsUI implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 ctrl.changeVolume((float) volume.getValue());
+            }
+        });
+
+        musicsView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                currentSelSong = musicsView.getSelectionModel().getSelectedItem();
             }
         });
 
@@ -101,19 +111,46 @@ public class PlaylistsUI implements Initializable {
         this.musicsView.getItems().addAll(playlist.getMusicsString());
     }
 
+    public int getIndexByName() {
+        String[] arr = this.currentSelSong.split(",");
+        String[] arr2 = arr[0].split(":");
+        this.song = arr2[1];
+        int index = 0;
+        for(int i = 0 ; i < this.musics.size() ; i++) {
+            if(musics.get(i).getName().equals(this.song))
+                index = i;
+        }
+        return index;
+    }
+
     public void play() {
-        boolean isRunning = ctrl.checkIfRunning();
-        if(!isRunning){
-            float db = ctrl.getVolume();
-            ctrl.changeVolume(db);
-        }else{
+        boolean isCompleted = ctrl.checkIfRunning();
+
+        if(this.currentSelSong != null) {
+            if(!isCompleted){
+                stop();
+            }
+            this.currentSong = getIndexByName();
             ctrl.open(this.musics.get(this.currentSong).getFile_name());
             float db = ctrl.getVolume();
             ctrl.changeVolume(db);
+            setMusicName(this.musics.get(this.currentSong).getName());
+            beginTimer();
+            ctrl.play2();
+
+            this.musicsView.getSelectionModel().clearSelection();
+
+        }else{
+            if(isCompleted){
+                ctrl.open(this.musics.get(this.currentSong).getFile_name());
+                float db = ctrl.getVolume();
+                ctrl.changeVolume(db);
+                setMusicName(this.musics.get(this.currentSong).getName());
+                beginTimer();
+                ctrl.play2();
+            }
         }
-        setMusicName(this.musics.get(this.currentSong).getName());
-        beginTimer();
-        ctrl.play2();
+
     }
 
     public void pause() {
@@ -173,16 +210,20 @@ public class PlaylistsUI implements Initializable {
         this.timer.cancel();
     }
 
-    public void goToMyPlaylists() {
+    @FXML
+    public void goToMyPlaylists(ActionEvent actionEvent) {
         try {
-            MyPlaylistsUI myPlaylistsUI = (MyPlaylistsUI) this.mainApp.replaceSceneContent("/fxml/MyPlaylist.fxml");
+            MyPlaylistsUI myPlaylistsUI = (MyPlaylistsUI) this.mainApp.replaceSceneContent("/fxml/MyPlaylists.fxml");
+            myPlaylistsUI.setEmailLabel(this.userEmail.getText());
+            myPlaylistsUI.addPlaylists();
             myPlaylistsUI.setMainApp(this.mainApp);
         } catch (Exception e) {
             AlertUI.infoAlert(e.getMessage(), "Error");
         }
     }
 
-    public void goToSearch() {
+    @FXML
+    public void goToSearch(ActionEvent actionEvent) {
         try {
             SearchUI searchUI = (SearchUI) this.mainApp.replaceSceneContent("/fxml/Search.fxml");
             searchUI.setMainApp(this.mainApp);

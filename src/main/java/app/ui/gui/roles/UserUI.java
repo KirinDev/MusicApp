@@ -72,7 +72,9 @@ public class UserUI implements Initializable {
 
     public void goToMyPlaylists() {
         try {
-             MyPlaylistsUI myPlaylistsUI = (MyPlaylistsUI) this.mainAppGUI.replaceSceneContent("/fxml/MyPlaylist.fxml");
+            MyPlaylistsUI myPlaylistsUI = (MyPlaylistsUI) this.mainAppGUI.replaceSceneContent("/fxml/MyPlaylists.fxml");
+            myPlaylistsUI.setEmailLabel(this.userEmail.getText());
+            myPlaylistsUI.addPlaylists();
             myPlaylistsUI.setMainApp(this.mainAppGUI);
         } catch (Exception e) {
             AlertUI.infoAlert(e.getMessage(), "Error");

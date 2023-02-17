@@ -44,4 +44,9 @@ public class Playlist {
         }
         return lst;
     }
+
+    @Override
+    public String toString() {
+        return name ;
+    }
 }
