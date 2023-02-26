@@ -18,9 +18,9 @@
       </ImageView>
       <Pane layoutX="253.0" layoutY="140.0" opacity="0.8" prefHeight="521.0" prefWidth="774.0" style="-fx-background-color: #080926; -fx-background-radius: 30;">
          <children>
-            <Label layoutX="178.0" layoutY="39.0" prefHeight="36.0" prefWidth="120.0" text="Login" textFill="WHITE">
+            <Label layoutX="177.0" layoutY="50.0" prefHeight="56.0" prefWidth="128.0" text="Login" textFill="WHITE">
                <font>
-                  <Font name="Segoe Print" size="39.0" />
+                  <Font name="Rockwell" size="39.0" />
                </font>
             </Label>
             <TextField fx:id="emailField" layoutX="230.0" layoutY="184.0" prefHeight="33.0" prefWidth="315.0" style="-fx-background-radius: 30;" />
@@ -35,15 +35,7 @@
                   <Font name="Rockwell" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnDoLogin" layoutX="332.0" layoutY="390.0" mnemonicParsing="false" onAction="#doLoginButton" onMouseEntered="#enterMouseOver" onMouseExited="#enterMouseExit" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #F78C28; -fx-background-radius: 30;" text="Enter">
-               <font>
-                  <Font name="Rockwell" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="124.0" layoutY="52.0">
+            <ImageView fitHeight="41.0" fitWidth="38.0" layoutX="124.0" layoutY="57.0">
                <image>
                   <Image url="@../img/icon_login.png" />
                </image>
@@ -58,6 +50,14 @@
                   <Image url="@../img/icon_pwd.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnDoLogin" layoutX="331.0" layoutY="372.0" mnemonicParsing="false" onAction="#doLoginButton" onMouseEntered="#enterMouseOver" onMouseExited="#enterMouseExit" prefHeight="33.0" prefWidth="114.0" style="-fx-background-color: #F78C28; -fx-background-radius: 30;" text="Enter">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
    </children>

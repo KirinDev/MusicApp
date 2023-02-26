@@ -1,19 +1,21 @@
 package app.ui.gui;
 
 import app.controller.MusicPlayerController;
-import app.domain.model.Music;
 import app.domain.model.Playlist;
 import app.mappers.MusicMapper;
 import app.mappers.dto.MusicDTO;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.*;
@@ -30,8 +32,7 @@ public class PlaylistsUI implements Initializable {
     private String currentSelSong;
     private String song;
     private boolean running;
-    private Timer timer;
-    private TimerTask task;
+    private Timeline timeline;
 
     @FXML
     private Button myPlaylists;
@@ -127,19 +128,7 @@ public class PlaylistsUI implements Initializable {
         boolean isCompleted = ctrl.checkIfRunning();
 
         if(this.currentSelSong != null) {
-            if(!isCompleted){
-                stop();
-            }
-            this.currentSong = getIndexByName();
-            ctrl.open(this.musics.get(this.currentSong).getFile_name());
-            float db = ctrl.getVolume();
-            ctrl.changeVolume(db);
-            setMusicName(this.musics.get(this.currentSong).getName());
-            beginTimer();
-            ctrl.play2();
-
-            this.musicsView.getSelectionModel().clearSelection();
-
+            playSong();
         }else{
             if(isCompleted){
                 ctrl.open(this.musics.get(this.currentSong).getFile_name());
@@ -150,7 +139,37 @@ public class PlaylistsUI implements Initializable {
                 ctrl.play2();
             }
         }
+    }
 
+    public void playSong() {
+        boolean isCompleted = ctrl.checkIfRunning();
+
+        if(!isCompleted){
+            stop();
+        }
+        this.currentSong = getIndexByName();
+        ctrl.open(this.musics.get(this.currentSong).getFile_name());
+        float db = ctrl.getVolume();
+        ctrl.changeVolume(db);
+        setMusicName(this.musics.get(this.currentSong).getName());
+        beginTimer();
+        ctrl.play2();
+
+        this.currentSelSong = null;
+        this.musicsView.getSelectionModel().clearSelection();
+    }
+
+    public void playNextOrPreviousSong() {
+        boolean isCompleted = ctrl.checkIfRunning();
+
+        if(isCompleted){
+            ctrl.open(this.musics.get(this.currentSong).getFile_name());
+            float db = ctrl.getVolume();
+            ctrl.changeVolume(db);
+            beginTimer();
+            ctrl.play2();
+            setMusicName(this.musics.get(this.currentSong).getName());
+        }
     }
 
     public void pause() {
@@ -162,8 +181,11 @@ public class PlaylistsUI implements Initializable {
     }
 
     public void next() {
-        stop();
-        if(this.currentSong < musics.size()) {
+
+        if(!ctrl.checkIfRunning())
+            stop();
+
+        if(this.currentSong < musics.size() - 1) {
             if(running)
                 cancelTimer();
             this.currentSong++;
@@ -172,7 +194,21 @@ public class PlaylistsUI implements Initializable {
                 cancelTimer();
             this.currentSong = 0;
         }
-        play();
+        playNextOrPreviousSong();
+    }
+
+    public void next2() {
+        if(!ctrl.checkIfRunning()) {
+            stop();
+            cancelTimer();
+        }
+
+        if(this.currentSong < musics.size() - 1) {
+            this.currentSong++;
+        }else{
+            this.currentSong = 0;
+        }
+        playNextOrPreviousSong();
     }
 
     public void previous() {
@@ -183,31 +219,34 @@ public class PlaylistsUI implements Initializable {
                 cancelTimer();
 
             this.currentSong--;
-            play();
+            playNextOrPreviousSong();
         }
     }
 
     public void beginTimer() {
-        timer = new Timer();
-        task = new TimerTask() {
-            public void run() {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
                 running = true;
                 double current = ctrl.getTime();
                 double end = ctrl.getDuration();
-
                 musicProgress.setProgress(current/end);
 
                 if(current/end == 1) {
                     cancelTimer();
+                    next2();
                 }
             }
-        };
-        timer.scheduleAtFixedRate(task, 1000, 1000);
+        }));
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
     }
 
     public void cancelTimer() {
         this.running = false;
-        this.timer.cancel();
+        this.timeline.stop();
     }
 
     @FXML
